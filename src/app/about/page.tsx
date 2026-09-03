@@ -1,10 +1,7 @@
 "use client";
 
-import { WhyTransparency } from "@/components/home/WhyTransparency";
 import { CEOStory } from "@/components/home/CEOStory";
-import { ClinicExperience } from "@/components/home/ClinicExperience";
 import { DoctorsSection } from "@/components/home/DoctorsSection";
-import { TreatmentJourney } from "@/components/home/TreatmentJourney";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { useLang } from "@/lib/i18n";
 
@@ -21,11 +18,8 @@ export default function AboutPage() {
           <p className="mt-5 max-w-xl text-lg leading-8 text-ivory/70">{t("aboutLead")}</p>
         </div>
       </header>
-      <WhyTransparency />
       <CEOStory />
-      <ClinicExperience />
       <DoctorsSection />
-      <TreatmentJourney />
       <FinalCTA />
     </>
   );

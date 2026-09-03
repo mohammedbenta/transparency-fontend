@@ -11,7 +11,7 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
-import { doctors, services } from "@/lib/content";
+import { doctors, featuredServices, services } from "@/lib/content";
 import { site, telHref, whatsappHref } from "@/lib/site";
 import { Button } from "@/components/Button";
 
@@ -58,15 +58,12 @@ export function BookingCta({
   service?: string;
   arrow?: boolean;
 }) {
-  const { openBooking } = useBooking();
   const { t } = useLang();
+  const href = service
+    ? `/?service=${encodeURIComponent(service)}#quick-book`
+    : "/#quick-book";
   return (
-    <Button
-      variant={variant}
-      className={className}
-      arrow={arrow}
-      onClick={() => openBooking(service ? { service } : undefined)}
-    >
+    <Button href={href} variant={variant} className={className} arrow={arrow}>
       {t("book")}
     </Button>
   );
@@ -243,7 +240,7 @@ function BookingDialog({
                     onClick={() => setService("consult")}
                     title={t("consult")}
                   />
-                  {services.map((s) => (
+                  {featuredServices.map((s) => (
                     <Choice
                       key={s.slug}
                       active={service === s.slug}

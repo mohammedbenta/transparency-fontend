@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { useBooking } from "@/components/BookingModal";
 import { useLang } from "@/lib/i18n";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/cn";
@@ -13,7 +12,6 @@ import { whatsappHref } from "@/lib/site";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { openBooking } = useBooking();
   const { t } = useLang();
 
   useEffect(() => {
@@ -35,22 +33,22 @@ export function Header() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
         onLight
-          ? "bg-ivory/92 shadow-[0_12px_40px_-24px_rgba(20,19,17,0.35)] backdrop-blur-md"
+          ? "bg-ivory/85 shadow-[0_1px_0_0_rgba(20,19,17,0.06),0_20px_44px_-28px_rgba(20,19,17,0.35)] backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 transition-all duration-500 lg:px-8",
-          scrolled ? "py-2.5" : "py-4",
+          "mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:px-8",
+          scrolled ? "py-2.5" : "py-5",
         )}
       >
-        <Logo priority onLight={onLight} onClick={() => setOpen(false)} />
+        <Logo priority onClick={() => setOpen(false)} />
 
         <nav
-          className="hidden items-center gap-6 text-[13px] lg:flex"
+          className="hidden items-center gap-7 text-[12.5px] tracking-[0.03em] lg:flex"
           aria-label={t("navAria")}
         >
           {navItems.map((item) => (
@@ -58,8 +56,8 @@ export function Header() {
               key={item.href}
               href={item.href}
               className={cn(
-                "relative py-1 transition-colors after:absolute after:start-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gold after:transition-all hover:after:w-full",
-                onLight ? "text-ink/80 hover:text-ink" : "text-ivory/85 hover:text-ivory",
+                "relative py-1 transition-colors duration-500 after:absolute after:start-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:w-full",
+                onLight ? "text-ink/75 hover:text-ink" : "text-ivory/80 hover:text-ivory",
               )}
             >
               {t(item.key)}
@@ -67,20 +65,19 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2.5">
           <LanguageSwitcher onLight={onLight} />
-          <button
-            type="button"
-            onClick={() => openBooking()}
+          <Link
+            href="/#quick-book"
             className={cn(
-              "hidden h-10 items-center rounded-full px-4 text-[13px] font-medium transition lg:inline-flex",
+              "hidden h-10 items-center rounded-full px-5 text-[12.5px] font-medium tracking-[0.05em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:inline-flex",
               onLight
-                ? "bg-forest text-ivory hover:bg-forest-deep"
-                : "bg-ivory text-ink hover:bg-gold",
+                ? "bg-forest text-ivory hover:bg-forest-deep hover:-translate-y-[1px] shadow-[0_10px_24px_-16px_rgba(28,59,52,0.6)] hover:shadow-[0_18px_32px_-16px_rgba(28,59,52,0.75)]"
+                : "border border-ivory/25 bg-ivory/10 text-ivory backdrop-blur hover:border-gold hover:bg-gold hover:text-ink",
             )}
           >
             {t("book")}
-          </button>
+          </Link>
           <button
             type="button"
             className={cn(
@@ -110,33 +107,36 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-line bg-ivory px-6 py-8 lg:hidden">
-          <nav className="flex flex-col gap-4 text-lg text-ink" aria-label={t("menu")}>
-            {navItems.map((item) => (
+        <div className="border-t border-line/60 bg-ivory/95 px-6 py-10 backdrop-blur-xl lg:hidden">
+          <nav
+            className="flex flex-col divide-y divide-line/70 text-ink"
+            aria-label={t("menu")}
+          >
+            {navItems.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="py-1"
+                className="flex items-baseline justify-between py-4 text-[1.35rem] font-light tracking-[-0.01em] transition-colors hover:text-gold-deep"
               >
-                {t(item.key)}
+                <span>{t(item.key)}</span>
+                <span className="font-serif text-[11px] tracking-[0.28em] text-gold-deep/60">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
               </Link>
             ))}
           </nav>
-          <div className="mt-8 flex flex-col gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                setOpen(false);
-                openBooking();
-              }}
-              className="rounded-full bg-forest py-3.5 text-center font-medium text-ivory"
+          <div className="mt-10 flex flex-col gap-3">
+            <Link
+              href="/#quick-book"
+              onClick={() => setOpen(false)}
+              className="rounded-full bg-forest py-4 text-center text-[13px] font-medium tracking-[0.05em] text-ivory shadow-[0_18px_38px_-20px_rgba(28,59,52,0.75)] transition hover:bg-forest-deep"
             >
               {t("book")}
-            </button>
+            </Link>
             <a
               href={whatsappHref(t("waDefault"))}
-              className="rounded-full border border-ink/10 py-3.5 text-center text-sm"
+              className="rounded-full border border-ink/12 py-4 text-center text-[13px] tracking-[0.05em] transition hover:border-gold-deep hover:text-gold-deep"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}

@@ -8,7 +8,6 @@ export const navItems: { href: string; key: MessageKey }[] = [
   { href: "/services", key: "nav.services" },
   { href: "/doctors", key: "nav.doctors" },
   { href: "/about", key: "nav.about" },
-  { href: "/#experience", key: "nav.experience" },
   { href: "/#testimonials", key: "nav.reviews" },
   { href: "/contact", key: "nav.contact" },
 ];
@@ -35,62 +34,29 @@ export const services: Service[] = [
       en: "When you want a balanced smile — with a plan explained before any step.",
     },
     summary: {
-      ar: "دراسة ملامحك وأسنانك للوصول إلى نتيجة طبيعية تليق بك، لا قالباً جاهزاً.",
-      en: "A study of your features and teeth toward a natural result — not a ready-made template.",
+      ar: "دراسة ملامحك وأسنانك — وقد تشمل عدسات خزفية — لنتيجة طبيعية تليق بك، لا قالباً جاهزاً.",
+      en: "A study of your features and teeth — which may include ceramic veneers — toward a natural result, not a ready-made template.",
     },
     what: {
-      ar: "تصميم الابتسامة هو تقييم دقيق لتناسب الأسنان مع ملامح الوجه، ولون الأسنان، وخط الابتسامة. نبدأ بالفهم والاستماع، ثم نوضح الخيارات المتاحة دون استعجال في القرار.",
-      en: "Smile design is a careful assessment of how teeth relate to facial features, shade, and the smile line. We start by listening, then explain available options without rushing the decision.",
+      ar: "تصميم الابتسامة تقييم لتناسب الأسنان مع ملامح الوجه، واللون، وخط الابتسامة. تنشر العيادة حالات لعدسات خزفية أمامية ولمسات محدودة عندما لا تحتاج الابتسامة تدخلاً كاملاً. نبدأ بالاستماع، ثم نوضح الخيارات دون استعجال.",
+      en: "Smile design assesses how teeth relate to facial features, shade, and the smile line. The clinic publishes cases of ceramic veneers on the front teeth, and limited refinements when a full makeover is not needed. We start by listening, then explain options without rushing.",
     },
     who: {
-      ar: "لمن يرغب في تحسين مظهر ابتسامته، أو يشعر بعدم تناسق في الشكل أو اللون، ويريد خطة واضحة قبل أي إجراء تجميلي.",
-      en: "For those who want to refine their smile, or feel the shape or shade is uneven, and prefer a clear plan before any cosmetic step.",
+      ar: "لمن يرغب في تحسين مظهر ابتسامته، أو يلاحظ فرقاً في لون أو شكل الأسنان الأمامية، ويريد خطة واضحة قبل أي خطوة.",
+      en: "For those who want to refine their smile, or notice a difference in the colour or shape of front teeth, and prefer a clear plan before any step.",
     },
     experience: {
-      ar: "تبدأ الزيارة باستشارة هادئة. نناقش هدفك، ونشرح ما يمكن تحقيقه وما يحتاج وقتاً أو تخصصات متعددة. القرار يبقى بيدك بعد أن تتضح الصورة.",
-      en: "The visit begins with a calm consultation. We discuss your goal and explain what is possible — and what may need time or more than one specialty. The decision remains yours once the picture is clear.",
+      ar: "تبدأ الزيارة باستشارة هادئة. نناقش هدفك، ونشرح ما يمكن تحقيقه. أحياناً تكفي لمسة على أسنان أمامية محدودة. القرار يبقى بيدك بعد أن تتضح الصورة.",
+      en: "The visit begins with a calm consultation. We discuss your goal and explain what is possible — sometimes a touch on a few front teeth is enough. The decision remains yours once the picture is clear.",
     },
     why: {
-      ar: "في الشفافية نضع التجربة الشخصية في قلب العناية: بيئة راقية، وشرح واضح، وخطة تُصمم حولك لا حول إجراء جاهز.",
-      en: "At Transparency, the personal experience sits at the centre of care: a refined environment, a clear explanation, and a plan designed around you — not a preset procedure.",
+      ar: "التجميل هنا ليس مبالغة. هو دقة في التفاصيل، وبيئة راقية، ونتيجة تبدو كأنها ابتسامتك في أوضح نسخة منها.",
+      en: "Aesthetics here are not exaggeration. They are precision in the details, a refined setting, and a result that still feels like your smile — in its clearest form.",
     },
-    image: "/images/clinic/smile.jpg",
+    image: "/images/services/smile-design.jpg",
     imageAlt: {
-      ar: "تفاصيل ابتسامة متناسقة بعد عناية تجميلية",
-      en: "Detail of a balanced smile after cosmetic dental care",
-    },
-  },
-  {
-    slug: "cosmetic",
-    name: { ar: "تجميل الأسنان", en: "Cosmetic dentistry" },
-    problem: {
-      ar: "عندما تريد لمسة دقيقة… دون مبالغة في الشكل.",
-      en: "When you want a precise touch — without an exaggerated look.",
-    },
-    summary: {
-      ar: "عدسات وتجميلات تُدرس بحذر لتعطي نتيجة ناعمة وطبيعية، حتى لو كانت على أسنان أمامية محدودة.",
-      en: "Veneers and aesthetic refinements planned carefully for a soft, natural result — even when only a few front teeth are involved.",
-    },
-    what: {
-      ar: "يشمل تجميل الأسنان إجراءات مثل العدسات الخزفية وتحسين مظهر الأسنان الأمامية. العيادة تنشر حالات لعدسات أمامية وتجميلاً محدوداً عندما لا تحتاج الابتسامة تدخلاً كاملاً.",
-      en: "Cosmetic care includes ceramic veneers and refinements to the front teeth. The clinic shares cases of upper veneers and limited aesthetic work when a full makeover is not needed.",
-    },
-    who: {
-      ar: "لمن يلاحظ فرقاً في لون أو شكل الأسنان الأمامية، أو يرغب في تجميل محسوب دون تغيير ملامحه بالكامل.",
-      en: "For those who notice a difference in the colour or shape of front teeth, or want considered aesthetic work without changing their whole appearance.",
-    },
-    experience: {
-      ar: "نوضح الخيار المناسب لحالتك: أحياناً تكفي لمسة على أربعة أسنان أمامية. نشرح المادة والشكل المتوقع، ونمنحك وقتاً للسؤال قبل التنفيذ.",
-      en: "We explain the option that fits your case — sometimes a touch on four front teeth is enough. We describe the material and expected look, and leave time for questions before treatment.",
-    },
-    why: {
-      ar: "الفلسفة هنا أن التجميل ليس مبالغة. هو دقة في التفاصيل، ونتيجة تبدو كأنها ابتسامتك… في أوضح نسخة منها.",
-      en: "The philosophy here is that aesthetics are not exaggeration. They are precision in the details — a result that still feels like your smile, in its clearest form.",
-    },
-    image: "/images/clinic/smile.jpg",
-    imageAlt: {
-      ar: "ابتسامة بطبيعية ونعومة في الإضاءة",
-      en: "A soft, natural smile in gentle light",
+      ar: "ابتسامة قريبة بعد عناية تجميلية",
+      en: "A close smile after aesthetic dental care",
     },
   },
   {
@@ -101,29 +67,29 @@ export const services: Service[] = [
       en: "When you need teeth that restore both function and form.",
     },
     summary: {
-      ar: "تركيبات تُخطط بعناية لتعويض الأسنان واستعادة الراحة في الأكل والمظهر.",
-      en: "Restorations planned carefully to replace teeth and restore comfort in eating and appearance.",
+      ar: "تركيبات يخطّطها استشاري التركيبات لتعويض الأسنان واستعادة الراحة في الأكل والمظهر.",
+      en: "Restorations planned by a prosthodontist to replace teeth and restore comfort in eating and appearance.",
     },
     what: {
-      ar: "طب التركيبات يُعنى بتعويض الأسنان المفقودة أو المتضررة عبر تيجان، جسور، أو حلول تعويضية أخرى يحدّدها التقييم. العيادة تضع التركيبات ضمن تخصصاتها المعلنة.",
-      en: "Prosthodontics is concerned with replacing missing or damaged teeth through crowns, bridges, or other restorations determined by assessment. The clinic lists prosthodontics among its stated specialties.",
+      ar: "طب التركيبات يُعنى بتعويض الأسنان المفقودة أو المتضررة. في العيادة يظهر د. جعفر سالم استشارياً للتركيبات في هايلايت الفريق الرسمي. الخيارات — كالتاج أو الجسر أو غيرهما — تُحدَّد بعد التقييم.",
+      en: "Prosthodontics is concerned with replacing missing or damaged teeth. Dr. Jaffar Salem appears as consultant prosthodontist in the clinic’s official team highlight. Options such as a crown or bridge are determined after assessment.",
     },
     who: {
       ar: "لمن فقد سناً أو أكثر، أو يحتاج إعادة بناء لتعويض سابق، ويريد حلاً يوازن بين الوظيفة والمظهر.",
       en: "For those who have lost one or more teeth, or need to rebuild a previous restoration, and want a solution that balances function and appearance.",
     },
     experience: {
-      ar: "يبدأ الأمر بفهم مشكلتك الحالية، ثم شرح الخيارات المتاحة بلغة واضحة. لا نعد بنتيجة جاهزة قبل التقييم.",
+      ar: "يبدأ الأمر بفهم مشكلتك الحالية، ثم شرح الخيارات بلغة واضحة. لا نعد بنتيجة جاهزة قبل التقييم.",
       en: "It begins with understanding your current concern, then explaining available options in plain language. We do not promise a finished result before assessment.",
     },
     why: {
       ar: "العناية هنا شخصية: خطة تناسب حالتك، وبيئة صُممت لتكون الزيارة أكثر هدوءاً ووضوحاً.",
       en: "Care here is personal: a plan that fits your case, and an environment designed to make the visit calmer and clearer.",
     },
-    image: "/images/clinic/reception.jpg",
+    image: "/images/services/prosthodontics.jpg",
     imageAlt: {
-      ar: "استقبال عيادات الشفافية في جدة",
-      en: "Reception at Transparency Dental Clinics in Jeddah",
+      ar: "تاج خزفي على نموذج تحضير السن",
+      en: "A ceramic crown on a prepared-tooth model",
     },
   },
   {
@@ -134,12 +100,12 @@ export const services: Service[] = [
       en: "When pain or inflammation is inside the tooth — and you need precise care.",
     },
     summary: {
-      ar: "علاج لبّ السن بجهد يركز على الدقة والوضوح في كل خطوة.",
-      en: "Root canal care with an emphasis on precision and clarity at every step.",
+      ar: "علاج لبّ السن على يد استشاري علاج العصب، مع وضوح في كل خطوة.",
+      en: "Root canal care with an endodontist — and clarity at every step.",
     },
     what: {
-      ar: "علاج الجذور يتعامل مع التهاب أو إصابة لبّ السن. العيادة تدرج علاج الجذور ضمن تخصصاتها. نوضح الإجراء والغرض منه قبل البدء، دون وعود طبية مسبقة.",
-      en: "Endodontics addresses inflammation or injury of the tooth pulp. The clinic includes root canal treatment among its specialties. We explain the procedure and its purpose before starting, without advance medical promises.",
+      ar: "علاج الجذور يتعامل مع التهاب أو إصابة لبّ السن. في العيادة يظهر د. ياسر الغامدي استشارياً لعلاج العصب في هايلايت الفريق الرسمي. نوضح الإجراء والغرض منه قبل البدء، دون وعود طبية مسبقة.",
+      en: "Endodontics addresses inflammation or injury of the tooth pulp. Dr. Yasser Alghamdi appears as consultant endodontist in the clinic’s official team highlight. We explain the procedure and its purpose before starting, without advance medical promises.",
     },
     who: {
       ar: "لمن يعاني ألماً عميقاً في السن، أو حساسية مستمرة، أو أُحيل لعلاج جذور بعد تقييم.",
@@ -153,43 +119,10 @@ export const services: Service[] = [
       ar: "الدقة جزء من هوية العيادة. وعلاج الجذور يتطلب يداً هادئة وشرحاً لا يُستعجل.",
       en: "Precision is part of the clinic’s identity. Root canal care asks for a calm hand and an explanation that is not rushed.",
     },
-    image: "/images/clinic/lounge.jpg",
+    image: "/images/clinic/operatory.jpg",
     imageAlt: {
-      ar: "تفاصيل صالة الانتظار في العيادة",
-      en: "Waiting lounge details at the clinic",
-    },
-  },
-  {
-    slug: "periodontics",
-    name: { ar: "علاج اللثة", en: "Periodontics" },
-    problem: {
-      ar: "عندما تحتاج لثتك عناية… لا تأخيراً.",
-      en: "When your gums need care — not delay.",
-    },
-    summary: {
-      ar: "عناية متخصصة بصحة اللثة والأنسجة الداعمة، كأساس لابتسامة مريحة على المدى الطويل.",
-      en: "Specialist attention to gum health and supporting tissues — the foundation of a comfortable smile over time.",
-    },
-    what: {
-      ar: "علاج اللثة يهتم بالتهابات اللثة وصحة الأنسجة حول الأسنان. العيادة تضع علاج اللثة ضمن تخصصاتها المعلنة. التقييم يحدد إن كانت الحالة تحتاج تنظيفاً أعمق أو متابعة متخصصة.",
-      en: "Periodontics focuses on gum inflammation and the tissues around the teeth. The clinic lists periodontics among its specialties. Assessment determines whether deeper cleaning or specialist follow-up is needed.",
-    },
-    who: {
-      ar: "لمن يلاحظ نزفاً عند التنظيف، أو تورماً، أو أُخبر أن لثته تحتاج عناية قبل أي تجميل أو تركيب.",
-      en: "For those who notice bleeding when cleaning, swelling, or have been told their gums need care before any cosmetic or restorative work.",
-    },
-    experience: {
-      ar: "نشرح بلطف ما نراه، ولماذا يهم، وما الخطوة التالية. الراحة والوضوح جزء من الزيارة لا إضافة عليها.",
-      en: "We explain gently what we see, why it matters, and what the next step is. Comfort and clarity are part of the visit — not extras.",
-    },
-    why: {
-      ar: "العيادة صُممت لتكون أكثر من موعد سريري: مكان تشعر فيه أن التفاصيل تُحترم، بما فيها صحة اللثة.",
-      en: "The clinic was designed to be more than a clinical appointment: a place where details are respected — including gum health.",
-    },
-    image: "/images/clinic/consent.jpg",
-    imageAlt: {
-      ar: "مراجعة نموذج الموافقة الرقمية في العيادة",
-      en: "Reviewing a digital consent form at the clinic",
+      ar: "غرفة علاج دقيقة في عيادات الشفافية",
+      en: "A precise treatment room at Transparency Dental Clinics",
     },
   },
   {
@@ -200,12 +133,12 @@ export const services: Service[] = [
       en: "When you want calmer alignment — with a plan you understand before committing.",
     },
     summary: {
-      ar: "تقويم يُناقش كرحلة: الهدف، المدة المتوقعة حسب التقييم، وما يناسب حالتك.",
-      en: "Orthodontics discussed as a journey: the goal, the expected timeline after assessment, and what fits your case.",
+      ar: "تقويم يُناقش كرحلة: الهدف، والخيارات — ومنها التقويم الشفاف — بعد التقييم.",
+      en: "Orthodontics discussed as a journey: the goal, and the options — including clear aligners — after assessment.",
     },
     what: {
-      ar: "تقويم الأسنان يعنى بتصحيح اصطفاف الأسنان والعلاقة بين الفكين. العيادة تتحدث عن التقويم ضمن محتواها التخصصي. الخطة لا تُحدد إلا بعد فحص.",
-      en: "Orthodontics is concerned with aligning teeth and the relationship of the jaws. The clinic discusses orthodontics in its specialty content. A plan is only set after examination.",
+      ar: "تقويم الأسنان يعنى بتصحيح اصطفاف الأسنان. العيادة تقدّم التقويم مع استشاري تقويم الأسنان د. إبراهيم بامقا — كما يظهر في هايلايت الفريق الرسمي وعلى قنوات العيادة. الخطة لا تُحدد إلا بعد فحص.",
+      en: "Orthodontics is concerned with aligning teeth. The clinic offers this care with consultant orthodontist Dr. Ibraheem Bamaga — as shown in the official team highlight and on the clinic’s channels. A plan is only set after examination.",
     },
     who: {
       ar: "لمن يلاحظ تزاحماً أو فراغات أو عضة غير مريحة، ويريد أن يفهم خيارات التقويم بهدوء.",
@@ -219,43 +152,10 @@ export const services: Service[] = [
       ar: "رحلة التقويم طويلة نسبياً. لذلك نبدأ بوضوح وثقة في المكان الذي ستعود إليه.",
       en: "Orthodontic care is a longer journey. That is why we start with clarity — and trust in the place you will return to.",
     },
-    image: "/images/clinic/reception.jpg",
+    image: "/images/services/orthodontics.jpg",
     imageAlt: {
-      ar: "بيئة العيادة الراقية في جدة",
-      en: "The clinic’s refined environment in Jeddah",
-    },
-  },
-  {
-    slug: "restorative",
-    name: { ar: "طب الأسنان الترميمي", en: "Restorative dentistry" },
-    problem: {
-      ar: "عندما تحتاج إعادة بناء… بعد علاجات سابقة أو تآكل.",
-      en: "When you need rebuilding — after previous treatment or wear.",
-    },
-    summary: {
-      ar: "ترميم يعيد وظيفة السن ومظهره، بما في ذلك إعادة التأهيل الأوسع عند الحاجة.",
-      en: "Restoration that returns function and appearance — including broader rehabilitation when needed.",
-    },
-    what: {
-      ar: "الطب الترميمي يشمل حشوات وإعادة بناء الأسنان المتضررة، وقد يمتد إلى إعادة تأهيل أوسع للفم. العيادة تنشر حالات ترميم وإعادة تأهيل ابتسامة بعد علاجات سابقة.",
-      en: "Restorative dentistry includes fillings and rebuilding damaged teeth, and may extend to broader oral rehabilitation. The clinic shares restorative cases and smile rehabilitation after previous treatments.",
-    },
-    who: {
-      ar: "لمن لديه أسنان متكسرة أو متآكلة، أو علاجات سابقة تحتاج إعادة نظر، ويريد خطة مرتّبة لا إجراءات متفرقة.",
-      en: "For those with broken or worn teeth, or previous treatments that need revisiting, and who want an ordered plan rather than scattered procedures.",
-    },
-    experience: {
-      ar: "نبدأ بقراءة الحالة كاملة قدر الإمكان، ثم نرتّب الأولويات: ما يريح أولاً، وما يُخطط لاحقاً. نشرح كل مرحلة قبل الانتقال إليها.",
-      en: "We begin by reading the case as fully as possible, then order priorities: what brings comfort first, and what is planned later. Each stage is explained before moving on.",
-    },
-    why: {
-      ar: "الترميم عمل دقيق. في الشفافية يُقدَّم داخل تجربة صُممت للراحة والأناقة، لا في عجلة سريرية.",
-      en: "Restorative work is precise. At Transparency it is offered inside an experience designed for comfort and elegance — not clinical hurry.",
-    },
-    image: "/images/clinic/lounge.jpg",
-    imageAlt: {
-      ar: "جلسة انتظار بهوية الضيافة الراقية",
-      en: "A waiting setting with a hospitality character",
+      ar: "تقويم شفاف على رخام هادئ",
+      en: "A clear aligner on quiet marble",
     },
   },
   {
@@ -270,41 +170,41 @@ export const services: Service[] = [
       en: "Implants presented as an option after assessment, with the expected journey explained — without advance guarantees.",
     },
     what: {
-      ar: "زراعة الأسنان خيار لتعويض سن مفقود بزراعة في العظم ثم تركيب تاج. العيادة نشرت حالة زراعة سن أمامي بعد فقدانه في حادث. الملاءمة تُحدَّد بعد الفحص.",
-      en: "A dental implant is an option to replace a missing tooth with a fixture in bone, then a crown. The clinic has shared a case of a front-tooth implant after loss in an accident. Suitability is determined after examination.",
+      ar: "زراعة الأسنان خيار لتعويض سن مفقود. د. جعفر سالم يُدرج الزراعة ضمن تخصصه كاستشاري تركيبات، ود. أحمد نواوي يذكر زراعة الأسنان ضمن مؤهلاته. الملاءمة تُحدَّد بعد الفحص.",
+      en: "A dental implant is an option to replace a missing tooth. Dr. Jaffar Salem includes implantology with his prosthodontic practice, and Dr. Ahmad Nawawi lists implantology among his credentials. Suitability is determined after examination.",
     },
     who: {
-      ar: "لمن فقد سناً — خاصة في المنطقة الأمامية — ويريد أن يفهم إن كانت الزراعة مناسبة لحالته.",
-      en: "For those who have lost a tooth — especially in the front — and want to understand whether an implant is appropriate for their case.",
+      ar: "لمن فقد سناً ويريد أن يفهم إن كانت الزراعة مناسبة لحالته.",
+      en: "For those who have lost a tooth and want to understand whether an implant is appropriate for their case.",
     },
     experience: {
       ar: "الاستشارة توضح الخطوات، والفحوصات المطلوبة، والبدائل إن وُجدت. لا نبدأ قبل أن تفهم المسار.",
       en: "The consultation outlines the steps, any required investigations, and alternatives if they exist. We do not start until you understand the path.",
     },
     why: {
-      ar: "تعويض السن الأمامي قرار يظهر في كل ابتسامة. لذلك نتعامل معه بهدوء، وتفاصيل، واحترام لملامحك.",
-      en: "Replacing a front tooth is a decision that shows in every smile. That is why we approach it with calm, detail, and respect for your features.",
+      ar: "تعويض السن قرار يظهر في كل ابتسامة. لذلك نتعامل معه بهدوء، وتفاصيل، واحترام لملامحك.",
+      en: "Replacing a tooth is a decision that shows in every smile. That is why we approach it with calm, detail, and respect for your features.",
     },
-    image: "/images/clinic/smile.jpg",
+    image: "/images/services/implant-out5.jpg",
     imageAlt: {
-      ar: "تفاصيل أسنان أمامية في إضاءة طبيعية",
-      en: "Front teeth detail in natural light",
+      ar: "رسم يوضح زرعة الأسنان: تاج ودعامة وبرغي في العظم",
+      en: "Diagram of a dental implant: crown, abutment, and fixture in the bone",
     },
   },
   {
-    slug: "preventive",
-    name: { ar: "العناية الوقائية", en: "Preventive care" },
+    slug: "general-care",
+    name: { ar: "العناية العامة", en: "General dentistry" },
     problem: {
-      ar: "عندما تريد نظافة مريحة… دون أن تخشى الزيارة.",
-      en: "When you want a comfortable clean — without dreading the visit.",
+      ar: "عندما تريد فحصاً أو تنظيفاً… في زيارة هادئة.",
+      en: "When you want an examination or a clean — in a calm visit.",
     },
     summary: {
-      ar: "تنظيف وفحص وقائي بيد هادئة، في بيئة صُممت لتكون أكثر لطفاً مما اعتدت عليه.",
-      en: "Cleaning and preventive examination with a light hand, in an environment designed to feel gentler than you may be used to.",
+      ar: "فحص وتنظيف وعناية يومية بيد هادئة، في بيئة صُممت لتكون ألطف مما قد تكون اعتدت عليه.",
+      en: "Examination, cleaning, and everyday care with a light hand — in a setting designed to feel gentler than you may be used to.",
     },
     what: {
-      ar: "العناية الوقائية تشمل الفحص والتنظيف الدوري. إحدى المراجعات المنشورة على الموقع تصف تنظيفاً مع د. أحمد نواوي بيد خفيفة، دون الإحساس المعتاد بالحساسية.",
-      en: "Preventive care includes examination and routine cleaning. A published patient comment on the clinic site describes a cleaning with Dr. Ahmed Nawawi with a light hand, without the usual sense of sensitivity.",
+      ar: "العناية العامة تشمل الفحص والتنظيف. إحدى المراجعات المنشورة على موقع العيادة تصف تنظيفاً مع د. أحمد نواوي بيد خفيفة، دون الإحساس المعتاد بالحساسية.",
+      en: "General care includes examination and cleaning. A published comment on the clinic site describes a cleaning with Dr. Ahmad Nawawi with a light hand, without the usual sense of sensitivity.",
     },
     who: {
       ar: "لمن يؤجّل التنظيف بسبب الحساسية أو التوتر، أو يريد المحافظة على صحة فمه بزيارات مرتّبة.",
@@ -318,13 +218,23 @@ export const services: Service[] = [
       ar: "حتى الموعد البسيط يستحق بيئة راقية ويداً هادئة. هذا جزء من فلسفة العيادة: العناية أكثر من ضرورة.",
       en: "Even a simple appointment deserves a refined setting and a calm hand. That is part of the clinic’s philosophy: care is more than a necessity.",
     },
-    image: "/images/clinic/consent.jpg",
+    image: "/images/clinic/reception.jpg",
     imageAlt: {
-      ar: "تجربة رقمية هادئة في العيادة",
-      en: "A calm digital experience at the clinic",
+      ar: "استقبال عيادات الشفافية: رخام، ذهب، وضوء نهاري",
+      en: "Transparency reception: marble, gold, and daylight",
     },
   },
 ];
+
+export const featuredServiceSlugs = [
+  "smile-design",
+  "prosthodontics",
+  "implants",
+] as const;
+
+export const featuredServices: Service[] = featuredServiceSlugs.map(
+  (slug) => services.find((s) => s.slug === slug)!,
+);
 
 export const doctors = [
   {
@@ -344,84 +254,100 @@ export const doctors = [
   },
 ] as const;
 
+export const teamMembers = [
+  {
+    slug: "ahmad-nawawi",
+    photo: "/images/doctors/ahmad-nawawi.jpg",
+    name: { ar: "د. أحمد نواوي", en: "Dr. Ahmad Nawawi" },
+    role: { ar: "الشريك المؤسس والرئيس التنفيذي", en: "Co-Founder & CEO" },
+    href: "/doctors/ahmed-nawawi",
+  },
+  {
+    slug: "jaffar-salem",
+    photo: "/images/doctors/jaffar-salem.jpg",
+    name: { ar: "د. جعفر سالم", en: "Dr. Jaffar Salem" },
+    role: { ar: "استشاري التركيبات", en: "Consultant Prosthodontics" },
+  },
+  {
+    slug: "yasser-alghamdi",
+    photo: "/images/doctors/yasser-alghamdi.jpg",
+    name: { ar: "د. ياسر الغامدي", en: "Dr. Yasser Alghamdi" },
+    role: { ar: "استشاري علاج العصب", en: "Consultant Endodontics" },
+  },
+  {
+    slug: "ibraheem-bamaga",
+    photo: "/images/doctors/ibraheem-bamaga.jpg",
+    name: { ar: "د. إبراهيم بامقا", en: "Dr. Ibraheem Bamaga" },
+    role: { ar: "استشاري تقويم الأسنان", en: "Consultant Orthodontics" },
+  },
+] as const;
+
 export const testimonials = [
   {
-    id: "rahaf",
+    id: "yaser",
     quote: {
-      ar: "العيادة مريحة للغاية وأحب أن لديهم التقنيات الحديثة. قمت بالتنظيف مع دكتور أحمد نواوي، وبصراحة كانت يده خفيفة. عادة عندما أنظف تكون لثتي حساسة وأشعر بطعم الدم، لكن هذه المرة لم أشعر بأي شيء. أوصي بشدة بزيارتهم.",
-      en: "The clinic is very comfortable and I like that they have modern technologies. I had a cleaning with Dr. Ahmed Nawawi, and to be honest his hand was light. Usually when I clean, my gums are sensitive and I feel the taste of blood, but this time I didn’t feel anything. I highly recommend visiting them.",
+      ar: "عياده فاخره مهتمين بأدق التفاصيل من المكان والخطه العلاجيه والامكانيات المتاحه بكل شي رحت لدكتور جعفر سالم باجعيفر محترف استشاري معنى الكلمه والمكان هادئ واضاءات العياده مريحه وكل شي تصميم المكان غير والعيادات وتقنيات متتطوره عندهم في كل شي والسعر اكيد حيكون شوي مرتفع الشغل غيررررر كله عن المعتاد.",
+      en: "A luxurious clinic — they care about the smallest details, from the place and the treatment plan to the capabilities available in everything. I went to Dr. Jaafar Salem Bajuaifer, a professional consultant in the true sense of the word. The place is quiet, the clinic lighting is comfortable, and the design of the place is unlike anything usual — the clinics and the advanced technologies they have in everything. The price will certainly be a bit high. The work is completely different from the usual.",
     },
-    name: { ar: "رهف الدهلوي", en: "Rahaf Dahlawi" },
-    role: { ar: "مستشارة تسويق", en: "Marketing Consultant" },
+    name: { ar: "ياسر", en: "Yaser" },
+    photo: "/images/reviews/yaser.png",
+    verified: true,
+  },
+  {
+    id: "farah",
+    quote: {
+      ar: "الخدمة تفوق التوقعات. من اللحظة التي تدخل فيها المكان، كل شيء رائع وجميل. الاستقبال في غاية اللطف والتعاون. المكان نفسه أنيق ومريح. أما عن الأطباء، فكانت زيارتي مع الدكتور حسام جُوخدار — وهو بالفعل يستحق تقييم 10 نجوم. عمله أكثر من ممتاز، يجمع بين الخبرة، والرقي، والفن، والمعرفة. أنصح به بشدة!",
+      en: "The service exceeds expectations. From the moment you enter, everything is wonderful and beautiful. Reception is extremely kind and helpful. The place itself is elegant and comfortable. As for the doctors, my visit was with Dr. Hussam Jokhdar — and he truly deserves a 10-star rating. His work is more than excellent; it brings together experience, refinement, art, and knowledge. I strongly recommend him!",
+    },
+    name: { ar: "د. فرح السادات", en: "Dr Farah Alsadat" },
+    photo: "/images/reviews/farah.png",
+    verified: true,
+  },
+  {
+    id: "aisha",
+    quote: {
+      ar: "شكراً شكراً عيادة مجمع شفافيه للأسنان ولفريقكم الرائع من الدكتوره رندا الدقل والدكتور ياسر الغامدي والدكتور ابراهيم بامقا والدكتور وضاح الخولي. كل التقدير والاحترام لهم جميعاً 🌹🌹🌹🌹🌹🌹🌹🌹🌹 وكل الاحترام والتقدير لفريق الاستقبال جدا رائع وجميل أتمنى لكم دوام هذأ ومزيدا من التقدم والتميز بإذن الله 🌹🌹🌹🌹🌹🌹🌹",
+      en: "Thank you, thank you Transparency Dental Clinics, and to your wonderful team: Dr. Randa Al-Daql, Dr. Yaser Al-Ghamdi, Dr. Ibrahim Bamaqa, and Dr. Waddah Al-Khouli. All appreciation and respect to all of them 🌹 And all respect and appreciation to the reception team — truly wonderful. I wish you the continuation of this, and more progress and excellence, God willing 🌹",
+    },
+    name: { ar: "عائشه المالكي", en: "Aisha Almalki" },
+    photo: "/images/reviews/aisha.png",
+    verified: true,
+  },
+  {
+    id: "meer",
+    quote: {
+      ar: "العيادة جدًا جميلة والطاقم الطبي محترف وأمينين في شغلهم والاستقبال بنات عسولات وأخلاق أشكرهم جميعًا وأحب أخص بالشكر دكتورتي العسل د.حنان الرويثي أمانتها عالية وتهتم للشغل وللمريض بنفس الوقت حقيقي كل شويا تتطمن عليا وتحرص يكون شغلها على أتم وأكمل وجه صراحة أنصح بالتعامل معاها ولا قصور بالبقية كلهم دكاترة شاطرين ولهم سمعتهم واسمائهم معروفة.🤍🤍",
+      en: "The clinic is very beautiful, and the medical team is professional and honest in their work. Reception are lovely and kind. I thank them all, and I especially want to thank my dear doctor, Dr. Hanan Al-Ruwaithi. Her integrity is high, and she cares about the work and the patient at the same time. Truly, every little while she checks on me, and she is careful that her work is done to the fullest. Honestly I recommend seeing her, with no slight to the rest — they are all skilled doctors with known reputations and names. 🤍",
+    },
+    name: { ar: "مير", en: "Meer" },
+    photo: "/images/reviews/meer.png",
+    verified: true,
   },
 ] as const;
 
-export const principles = [
+export const ceoValues = [
   {
-    num: "01",
-    title: { ar: "عناية مصممة حولك", en: "Care designed around you" },
+    id: "beyond",
+    label: { ar: "تتجاوز التوقعات", en: "Beyond expectations" },
     body: {
-      ar: "كل زيارة تبدأ بك: ما يزعجك، وما تطمح إليه، وما يناسب وتيرتك. لا قالباً جاهزاً يُفرض على الجميع.",
-      en: "Every visit starts with you: what bothers you, what you hope for, and the pace that fits. No ready-made template imposed on everyone.",
+      ar: "معايير نضعها لأنفسنا أعلى مما يُطلب منّا — في التشخيص، والإنجاز، وأدق التفاصيل.",
+      en: "Standards we hold ourselves to, higher than what is asked — in diagnosis, execution, and the smallest details.",
     },
   },
   {
-    num: "02",
-    title: { ar: "دقة في كل تفصيل", en: "Precision in every detail" },
+    id: "personalized",
+    label: { ar: "عناية شخصية", en: "Personalized care" },
     body: {
-      ar: "من خطة العلاج إلى بيئة العيادة، التفاصيل ليست زينة. هي طريقة احترامنالك ولاحق القرار الطبي.",
-      en: "From the treatment plan to the clinic environment, details are not decoration. They are how we respect you — and the clinical decision.",
+      ar: "خطة تُبنى حولك وحدك — بعد أن نُصغي، ونفهم، ونشرح كل خيار قبل أي خطوة.",
+      en: "A plan built around you alone — after we listen, understand, and explain every option before a single step.",
     },
   },
   {
-    num: "03",
-    title: { ar: "تجربة تليق بك", en: "An experience that befits you" },
+    id: "experience",
+    label: { ar: "تجربة راقية فريدة", en: "A rare experience" },
     body: {
-      ar: "صُممت العيادة لتفوح بالراحة والأناقة والرقي. الزيارة ليست ممراً سريرياً… هي استضافة راقية.",
-      en: "The clinic was designed to exude comfort, elegance, and sophistication. The visit is not a clinical corridor — it is refined hospitality.",
-    },
-  },
-  {
-    num: "04",
-    title: { ar: "معايير متقدمة", en: "Elevated standards" },
-    body: {
-      ar: "نسعى لأعلى معايير العناية، ونستخدم تقنيات حديثة حيث تخدم راحتك ودقة العمل — كما وصفتها مراجِعات العيادة.",
-      en: "We aim for the highest standards of care, and use modern technologies where they serve your comfort and the precision of the work — as patients of the clinic have described.",
-    },
-  },
-] as const;
-
-export const journey = [
-  {
-    num: "01",
-    title: { ar: "استشارتك", en: "Your consultation" },
-    body: {
-      ar: "نستمع أولاً. هدفك، تاريخك، وما يجعل الزيارة مريحة لك.",
-      en: "We listen first. Your goal, your history, and what would make the visit comfortable.",
-    },
-  },
-  {
-    num: "02",
-    title: { ar: "التقييم", en: "Assessment" },
-    body: {
-      ar: "فحص هادئ يوضح الصورة. نشرح ما نراه بلغة مفهومة، دون استعجال.",
-      en: "A calm examination that clarifies the picture. We explain what we see in plain language, without hurry.",
-    },
-  },
-  {
-    num: "03",
-    title: { ar: "الخطة المناسبة لك", en: "A plan that fits you" },
-    body: {
-      ar: "خيارات مرتّبة حسب أولويتك. القرار يبقى بيدك بعد أن تتضح التفاصيل.",
-      en: "Options ordered by your priority. The decision remains yours once the details are clear.",
-    },
-  },
-  {
-    num: "04",
-    title: { ar: "بدء رحلتك", en: "Begin your journey" },
-    body: {
-      ar: "نبدأ بالخطوة المتفق عليها، ونتابع معك بوضوح في كل مرحلة.",
-      en: "We begin with the agreed step, and follow with you clearly at every stage.",
+      ar: "فريق مُختار، تقنيات دقيقة، ومكانٌ صُمِّم للهدوء — يقاس بالإحساس، لا بالوقت.",
+      en: "A chosen team, precise technology, and a space designed for calm — measured in feeling, not in minutes.",
     },
   },
 ] as const;
@@ -443,8 +369,8 @@ export const faqs = [
       en: "How do I choose the right service?",
     },
     a: {
-      ar: "إن لم تكن متأكداً، ابدأ باستشارة. بعد الاستماع والتقييم نقترح المسار الأنسب — تجميلاً أو ترميمياً أو وقائياً — دون أن تضطر لاختيار إجراء من قائمة وحدك.",
-      en: "If you are unsure, start with a consultation. After listening and assessment we suggest the most suitable path — cosmetic, restorative, or preventive — without asking you to pick a procedure from a list alone.",
+      ar: "إن لم تكن متأكداً، ابدأ باستشارة. بعد الاستماع والتقييم نقترح المسار الأنسب دون أن تضطر لاختيار إجراء من قائمة وحدك.",
+      en: "If you are unsure, start with a consultation. After listening and assessment we suggest the most suitable path — without asking you to pick a procedure from a list alone.",
     },
   },
   {
@@ -483,15 +409,15 @@ export const faqs = [
       en: "What are the opening hours?",
     },
     a: {
-      ar: "ساعات العمل غير منشورة بالتفصيل على الموقع الحالي. يُرجى التواصل هاتفياً أو عبر واتساب لتأكيد الموعد المناسب لك.",
-      en: "Detailed opening hours are not published on the current clinic website. Please call or message on WhatsApp to confirm a time that suits you.",
+      ar: "دوام العيادة من السبت إلى الخميس، من ١٠ صباحاً إلى ٩ مساءً. يُفضَّل التواصل لتأكيد الموعد.",
+      en: "The clinic is open Saturday to Thursday, 10:00 AM to 9:00 PM. Please contact us to confirm your visit.",
     },
   },
 ] as const;
 
 export const partners = [
-  { src: "/images/brand/partner-tabby.png", name: "Tabby" },
   { src: "/images/brand/partner-route.png", name: "The Route" },
+  { src: "/images/brand/partner-tabby.png", name: "Tabby" },
   { src: "/images/brand/partner-3.png", name: "baseeeta" },
 ] as const;
 
@@ -527,6 +453,23 @@ export const clinicGallery = [
       en: "Smile detail in quiet light",
     },
     caption: { ar: "التفاصيل", en: "Detail" },
+  },
+] as const;
+
+export const reviewsPhotos = [
+  {
+    src: "/images/clinic/operatory.jpg",
+    alt: {
+      ar: "غرفة العلاج في عيادات الشفافية: كرسي حديث، إضاءة طبيعية، ونباتات",
+      en: "Treatment room at Transparency: a modern chair, natural light, and plants",
+    },
+  },
+  {
+    src: "/images/clinic/treatment.jpg",
+    alt: {
+      ar: "فريق عيادات الشفافية أثناء جلسة علاج",
+      en: "The Transparency team during a treatment session",
+    },
   },
 ] as const;
 

@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { IBM_Plex_Sans_Arabic, Cormorant_Garamond } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { MobileDock } from "@/components/MobileDock";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { IntroSplash } from "@/components/IntroSplash";
+import { StickyActions } from "@/components/StickyActions";
 import { JsonLd } from "@/components/JsonLd";
 import { BookingProvider } from "@/components/BookingModal";
 import { LanguageProvider } from "@/lib/i18n";
 import { SkipLink } from "@/components/SkipLink";
 import { site } from "@/lib/site";
+import type { Lang } from "@/lib/content";
 import "./globals.css";
 
 const arabic = IBM_Plex_Sans_Arabic({
@@ -21,6 +23,7 @@ const arabic = IBM_Plex_Sans_Arabic({
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
 });
@@ -29,6 +32,7 @@ export const viewport: Viewport = {
   themeColor: "#1c3b34",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -68,31 +72,29 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const cookieStore = await cookies();
+  const lang: Lang = cookieStore.get("lang")?.value === "en" ? "en" : "ar";
+  const introDone = cookieStore.get("tclinics-intro")?.value === "1";
+
   return (
     <html
-      lang="ar"
-      dir="rtl"
-      suppressHydrationWarning
-      className={`${arabic.variable} ${serif.variable} ${arabic.className} h-full antialiased`}
+      lang={lang}
+      dir={lang === "ar" ? "rtl" : "ltr"}
+      className={`${arabic.variable} ${serif.variable} ${arabic.className} h-full antialiased ${introDone ? "intro-done" : ""}`}
     >
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var l=localStorage.getItem("lang");if(l==="en"){var h=document.documentElement;h.lang="en";h.dir="ltr";}}catch(e){}})();`,
-          }}
-        />
-        <LanguageProvider>
+        <LanguageProvider initialLang={lang}>
           <BookingProvider>
             <SkipLink />
             <JsonLd />
+            {!introDone && <IntroSplash />}
             <Header />
-            <main id="content" className="flex-1 pb-24 lg:pb-0">
+            <main id="content" className="flex-1">
               {children}
             </main>
             <Footer />
-            <WhatsAppButton />
-            <MobileDock />
+            <StickyActions />
           </BookingProvider>
         </LanguageProvider>
       </body>

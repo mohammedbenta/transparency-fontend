@@ -48,7 +48,12 @@ export default function ContactPage() {
               <p className="text-[11px] tracking-[0.2em] text-gold-deep uppercase">
                 {t("footerHours")}
               </p>
-              <p className="mt-2 text-sm leading-7 text-muted">{t("footerHoursNote")}</p>
+              <p className="mt-2 text-lg font-light leading-8">
+                {lang === "ar" ? site.hours.daysAr : site.hours.daysEn}
+              </p>
+              <p className="mt-1 text-muted">
+                {lang === "ar" ? site.hours.timeAr : site.hours.timeEn}
+              </p>
             </div>
             <BookingCta />
           </div>
@@ -95,7 +100,7 @@ export default function ContactPage() {
       <section className="bg-surface px-5 py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-light">{t("locationTitle")}</h2>
-          <div className="mt-8 overflow-hidden border border-line">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-line">
             <iframe
               title={t("locationTitle")}
               src={site.mapsEmbed}

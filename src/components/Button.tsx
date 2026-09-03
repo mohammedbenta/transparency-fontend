@@ -5,13 +5,13 @@ type Variant = "primary" | "secondary" | "ghost" | "dark" | "gold";
 
 const styles: Record<Variant, string> = {
   primary:
-    "bg-forest text-ivory hover:bg-forest-deep shadow-[0_14px_32px_-16px_rgba(28,59,52,0.65)]",
+    "bg-forest text-ivory hover:bg-forest-deep shadow-[0_18px_38px_-20px_rgba(28,59,52,0.75)] hover:shadow-[0_24px_48px_-20px_rgba(28,59,52,0.85)] hover:-translate-y-[1px]",
   secondary:
-    "bg-transparent text-ivory border border-ivory/35 hover:border-gold hover:text-gold",
+    "bg-transparent text-ivory border border-ivory/30 hover:border-gold hover:text-gold hover:bg-ivory/[0.04]",
   ghost:
-    "bg-transparent text-ink border border-ink/12 hover:border-gold-deep hover:text-gold-deep",
-  dark: "bg-charcoal text-ivory hover:bg-ink",
-  gold: "bg-gold text-ink hover:bg-gold-deep hover:text-ivory",
+    "bg-transparent text-ink border border-ink/12 hover:border-gold-deep hover:text-gold-deep hover:bg-ink/[0.02]",
+  dark: "bg-charcoal text-ivory hover:bg-ink hover:-translate-y-[1px]",
+  gold: "bg-gold text-ink hover:bg-gold-deep hover:text-ivory hover:-translate-y-[1px]",
 };
 
 export function Button({
@@ -34,7 +34,7 @@ export function Button({
   arrow?: boolean;
 }) {
   const cls = cn(
-    "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-all duration-300",
+    "group inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-3.5 text-[13px] font-medium tracking-[0.05em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform",
     styles[variant],
     className,
   );

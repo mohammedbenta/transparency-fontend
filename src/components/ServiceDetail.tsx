@@ -77,7 +77,7 @@ export function ServiceDetail({ service }: { service: Service }) {
             </section>
           </div>
 
-          <aside className="h-fit border border-line bg-surface p-8 lg:col-span-4 lg:sticky lg:top-24">
+          <aside className="h-fit rounded-2xl border border-line bg-surface p-8 lg:col-span-4 lg:sticky lg:top-24">
             <p className="text-[11px] tracking-[0.22em] text-gold-deep uppercase">
               {t("book")}
             </p>

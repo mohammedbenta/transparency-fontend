@@ -3,14 +3,18 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
+type RevealVariant = "up" | "left" | "right" | "scale" | "image";
+
 export function Reveal({
   children,
   className,
   delay = 0,
+  variant = "up",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  variant?: RevealVariant;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -31,10 +35,21 @@ export function Reveal({
     return () => observer.disconnect();
   }, []);
 
+  const variantClass =
+    variant === "left"
+      ? "reveal reveal-left"
+      : variant === "right"
+        ? "reveal reveal-right"
+        : variant === "scale"
+          ? "reveal reveal-scale"
+          : variant === "image"
+            ? "reveal-image"
+            : "reveal";
+
   return (
     <div
       ref={ref}
-      className={cn("reveal", visible && "is-visible", className)}
+      className={cn(variantClass, visible && "is-visible", className)}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
