@@ -55,10 +55,6 @@ export function ServicesShowcase({ hideIntro = false }: { hideIntro?: boolean })
                         "origin-[center_80%] scale-[1.12] object-[50%_88%]",
                     )}
                   />
-                  <span className="absolute start-6 top-6 flex items-center gap-2 font-serif text-xl italic text-ivory drop-shadow-[0_2px_8px_rgba(20,19,17,0.5)]">
-                    <span aria-hidden className="h-px w-6 bg-gold/80" />
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                 </div>
                 <div className="px-6 pb-7 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
                   <h3

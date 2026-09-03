@@ -56,6 +56,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={!item.href.includes("#")}
               className={cn(
                 "relative py-1 transition-colors duration-500 after:absolute after:start-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)] hover:after:w-full",
                 onLight ? "text-ink/75 hover:text-ink" : "text-ivory/80 hover:text-ivory",
@@ -71,6 +72,7 @@ export function Header() {
           <Link
             href={bookingHref()}
             onClick={handleBookingClick}
+            prefetch={false}
             className={cn(
               "hidden h-10 items-center rounded-full px-5 text-[12.5px] font-medium tracking-[0.05em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:inline-flex",
               onLight
@@ -118,6 +120,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={!item.href.includes("#")}
                 onClick={() => setOpen(false)}
                 className="flex items-baseline justify-between py-4 text-[1.35rem] font-light tracking-[-0.01em] transition-colors hover:text-gold-deep"
               >
@@ -131,6 +134,7 @@ export function Header() {
           <div className="mt-10 flex flex-col gap-3">
             <Link
               href={bookingHref()}
+              prefetch={false}
               onClick={(e) => {
                 handleBookingClick(e);
                 setOpen(false);

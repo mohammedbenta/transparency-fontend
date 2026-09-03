@@ -17,7 +17,7 @@ export function CEOStory() {
       />
       <div className="mx-auto grid max-w-7xl items-stretch gap-14 lg:grid-cols-12 lg:gap-24">
         <Reveal
-          className="relative aspect-[4/5] overflow-hidden rounded-[1.35rem] bg-ink shadow-[0_40px_80px_-40px_rgba(12,11,9,0.45)] sm:aspect-[3/4] lg:col-span-5 lg:aspect-auto lg:min-h-[42rem]"
+          className="relative aspect-[4/5] overflow-hidden rounded-[1.35rem] bg-ink shadow-[0_10px_28px_-6px_rgba(20,19,17,0.16)] sm:aspect-[3/4] lg:col-span-5 lg:aspect-auto lg:min-h-[42rem]"
         >
           <Image
             src="/images/doctors/ahmed-nawawi-ceo.jpg"

@@ -1,14 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { BOOKING_ID } from "@/lib/booking";
 
 export default function BookingPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace("/#quick-book");
-  }, [router]);
-
-  return null;
+  redirect(`/#${BOOKING_ID}`);
 }

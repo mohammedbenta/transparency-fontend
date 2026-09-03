@@ -121,7 +121,7 @@ body::before {
   display: grid;
   place-items: center;
   background: var(--color-charcoal);
-  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .intro-splash.is-leaving {
@@ -142,23 +142,20 @@ html.intro-done .intro-splash {
   gap: 1.75rem;
 }
 
-.intro-glow {
-  position: absolute;
-  width: min(70vw, 28rem);
-  height: min(70vw, 28rem);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(201 165 106 / 0.2), transparent 68%);
+.intro-logo-frame {
+  position: relative;
+  width: min(78vw, 22rem);
+  overflow: hidden;
   opacity: 0;
-  animation: intro-glow 2.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+  transform: translateY(14px);
+  clip-path: inset(0 48% 0 48%);
+  animation: intro-logo-reveal 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
 }
 
 .intro-logo {
-  width: min(78vw, 22rem);
+  display: block;
+  width: 100%;
   height: auto;
-  opacity: 0;
-  filter: blur(14px);
-  transform: translateY(10px) scale(0.94);
-  animation: intro-logo 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
 }
 
 .intro-rule {
@@ -172,39 +169,23 @@ html.intro-done .intro-splash {
     var(--color-gold),
     transparent
   );
-  animation: intro-rule 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.95s forwards;
+  animation: intro-rule 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
 }
 
-@keyframes intro-glow {
+@keyframes intro-logo-reveal {
   0% {
     opacity: 0;
-    transform: scale(0.7);
+    transform: translateY(14px);
+    clip-path: inset(0 48% 0 48%);
   }
-  55% {
+  58% {
     opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0.55;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes intro-logo {
-  0% {
-    opacity: 0;
-    filter: blur(14px);
-    transform: translateY(10px) scale(0.94);
-  }
-  62% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(-2px) scale(1.015);
+    transform: translateY(0);
   }
   100% {
     opacity: 1;
-    filter: blur(0);
     transform: none;
+    clip-path: inset(0 0 0 0);
   }
 }
 
@@ -260,9 +241,9 @@ html.intro-done .intro-splash {
     display: none;
   }
 
+  .intro-logo-frame,
   .intro-logo,
-  .intro-rule,
-  .intro-glow {
+  .intro-rule {
     animation: none;
   }
 }

@@ -75,20 +75,19 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const cookieStore = await cookies();
   const lang: Lang = cookieStore.get("lang")?.value === "en" ? "en" : "ar";
-  const introDone = cookieStore.get("tclinics-intro")?.value === "1";
 
   return (
     <html
       lang={lang}
       dir={lang === "ar" ? "rtl" : "ltr"}
-      className={`${arabic.variable} ${serif.variable} ${arabic.className} h-full antialiased ${introDone ? "intro-done" : ""}`}
+      className={`${arabic.variable} ${serif.variable} ${arabic.className} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
         <LanguageProvider initialLang={lang}>
           <BookingProvider>
             <SkipLink />
             <JsonLd />
-            {!introDone && <IntroSplash />}
+            <IntroSplash />
             <Header />
             <main id="content" className="flex-1">
               {children}

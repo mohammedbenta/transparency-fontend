@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 
-function markIntroSeen() {
-  sessionStorage.setItem("tclinics-intro", "1");
-  document.cookie = "tclinics-intro=1; Path=/; SameSite=Lax";
+function markIntroDone() {
   document.documentElement.classList.add("intro-done");
 }
 
@@ -16,9 +14,8 @@ export function IntroSplash() {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const seen = sessionStorage.getItem("tclinics-intro");
-    if (reduce || seen) {
-      markIntroSeen();
+    if (reduce) {
+      markIntroDone();
       setGone(true);
       return;
     }
@@ -26,12 +23,12 @@ export function IntroSplash() {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const leave = window.setTimeout(() => setLeaving(true), 2400);
+    const leave = window.setTimeout(() => setLeaving(true), 1800);
     const end = window.setTimeout(() => {
-      markIntroSeen();
+      markIntroDone();
       document.body.style.overflow = prev;
       setGone(true);
-    }, 3300);
+    }, 2500);
 
     return () => {
       window.clearTimeout(leave);
@@ -44,16 +41,17 @@ export function IntroSplash() {
 
   return (
     <div className={cn("intro-splash", leaving && "is-leaving")} aria-hidden>
-      <span className="intro-glow" />
       <div className="intro-mark">
-        <Image
-          src="/images/brand/logo-wordmark.png"
-          alt=""
-          width={927}
-          height={170}
-          priority
-          className="intro-logo"
-        />
+        <div className="intro-logo-frame">
+          <Image
+            src="/images/brand/logo-wordmark.png"
+            alt=""
+            width={927}
+            height={170}
+            priority
+            className="intro-logo"
+          />
+        </div>
         <span className="intro-rule" />
       </div>
     </div>

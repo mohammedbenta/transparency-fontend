@@ -91,11 +91,15 @@ export function DoctorsSection({ className }: { className?: string }) {
                     {tx(doctor.role)}
                   </p>
                 </div>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-[1.35rem] border border-gold/35 transition-colors duration-700 group-hover:border-gold/70"
+                />
               </div>
             );
 
             const frame =
-              "block overflow-hidden rounded-[1.35rem] ring-1 ring-gold/20 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ring-gold/55 hover:-translate-y-1";
+              "group block rounded-[1.35rem] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1";
 
             return (
               <article

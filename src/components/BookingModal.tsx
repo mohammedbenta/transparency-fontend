@@ -11,7 +11,7 @@ import {
 } from "react";
 import { cn } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
-import { doctors, featuredServices, services } from "@/lib/content";
+import { doctors, services } from "@/lib/content";
 import { site, telHref, whatsappHref } from "@/lib/site";
 import { Button } from "@/components/Button";
 import { bookingHref, handleBookingClick } from "@/lib/booking";
@@ -244,7 +244,7 @@ function BookingDialog({
                     onClick={() => setService("consult")}
                     title={t("consult")}
                   />
-                  {featuredServices.map((s) => (
+                  {services.map((s) => (
                     <Choice
                       key={s.slug}
                       active={service === s.slug}

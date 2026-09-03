@@ -71,7 +71,12 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={cls} onClick={onClick}>
+    <Link
+      href={href}
+      className={cls}
+      onClick={onClick}
+      prefetch={!href.includes("#")}
+    >
       {inner}
     </Link>
   );

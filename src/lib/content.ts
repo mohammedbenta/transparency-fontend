@@ -88,10 +88,10 @@ export const services: Service[] = [
       ar: "العناية هنا شخصية: خطة تناسب حالتك، وبيئة صُممت لتكون الزيارة أكثر هدوءاً ووضوحاً.",
       en: "Care here is personal: a plan that fits your case, and an environment designed to make the visit calmer and clearer.",
     },
-    image: "/images/services/prosthodontics.jpg",
+    image: "/images/services/prosthodontics-bridge-2.jpg",
     imageAlt: {
-      ar: "تاج خزفي على نموذج تحضير السن",
-      en: "A ceramic crown on a prepared-tooth model",
+      ar: "رسم توضيحي لجسر أسنان: دعامتان محضّرتان وتركيبة ثلاثية",
+      en: "Illustration of a dental bridge: two prepared abutments and a three-unit restoration",
     },
   },
   {
@@ -504,19 +504,6 @@ export const reviewsPhotos = [
 ] as const;
 
 export const beforeAfter = [
-  {
-    id: "ceramic-front",
-    before: "/images/before-after/ceramic-front-before.jpg",
-    after: "/images/before-after/ceramic-front-after.jpg",
-    title: {
-      ar: "أربع عدسات خزفية للأسنان الأمامية",
-      en: "Four ceramic veneers on the front teeth",
-    },
-    caption: {
-      ar: "من حالات العيادة المنشورة: لمسة على الأسنان الأمامية فقط، بلون ورسمة طبيعية.",
-      en: "From a published clinic case: a touch on the front teeth only, in a natural shade and form.",
-    },
-  },
   {
     id: "veneers-4",
     before: "/images/before-after/veneers-4-before.jpg",

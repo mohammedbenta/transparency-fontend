@@ -80,7 +80,12 @@ export function BeforeAfter() {
               key={item.id}
               className="w-full shrink-0 snap-start lg:w-[calc((100%-2.5rem)/3)]"
             >
-              <Compare before={item.before} after={item.after} alt={tx(item.title)} />
+              <Compare
+                before={item.before}
+                after={item.after}
+                alt={tx(item.title)}
+                beforeLift={"beforeLift" in item ? item.beforeLift : undefined}
+              />
             </article>
           ))}
         </div>
@@ -128,10 +133,12 @@ function Compare({
   before,
   after,
   alt,
+  beforeLift,
 }: {
   before: string;
   after: string;
   alt: string;
+  beforeLift?: number;
 }) {
   const { t, lang } = useLang();
   const [pos, setPos] = useState(50);
@@ -190,15 +197,22 @@ function Compare({
         className="object-cover object-center"
         draggable={false}
       />
-      <div className="absolute inset-0" style={{ clipPath: clip }}>
-        <Image
-          src={before}
-          alt=""
-          fill
-          sizes="(max-width: 1023px) 100vw, 33vw"
-          className="object-cover object-center"
-          draggable={false}
-        />
+      <div className="absolute inset-0 overflow-hidden" style={{ clipPath: clip }}>
+        <div
+          className="absolute inset-x-0 top-0"
+          style={{
+            height: beforeLift ? `${100 + beforeLift}%` : "100%",
+          }}
+        >
+          <Image
+            src={before}
+            alt=""
+            fill
+            sizes="(max-width: 1023px) 100vw, 33vw"
+            className="object-cover object-center"
+            draggable={false}
+          />
+        </div>
       </div>
 
       <div

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
 import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
-import { clinicGallery, reviewsPhotos, testimonials, featuredServices } from "@/lib/content";
+import { clinicGallery, reviewsPhotos, testimonials, services } from "@/lib/content";
 import { site, telHref, whatsappHref } from "@/lib/site";
 import { BOOKING_ID, scrollToBooking } from "@/lib/booking";
 
@@ -202,25 +202,23 @@ function QuoteMark() {
   const goldId = useId();
 
   return (
-    <div className="flex flex-col items-start gap-4" aria-hidden>
-      <svg
-        viewBox="0 0 72 52"
-        className="h-12 w-[4.15rem] sm:h-14 sm:w-[4.85rem]"
-      >
-        <defs>
-          <linearGradient id={goldId} x1="12%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stopColor="#f0e2c4" />
-            <stop offset="42%" stopColor="#c9a56a" />
-            <stop offset="100%" stopColor="#8d6a3a" />
-          </linearGradient>
-        </defs>
-        <path
-          fill={`url(#${goldId})`}
-          d="M4.2 30.6C4.2 18.4 11.6 8.6 24.8 5.2l1.7 5.1C17.4 12.8 13.6 18.6 13.6 26.4c2.6-1.4 5.9-1.3 8.4.4 2.7 1.9 4.2 5.1 4 8.7-.3 6.2-5.1 11-11.6 11-6.1 0-10.2-6.2-10.2-15.9Zm35.6 0C39.8 18.4 47.2 8.6 60.4 5.2l1.7 5.1C53 12.8 49.2 18.6 49.2 26.4c2.6-1.4 5.9-1.3 8.4.4 2.7 1.9 4.2 5.1 4 8.7-.3 6.2-5.1 11-11.6 11-6.1 0-10.2-6.2-10.2-15.9Z"
-        />
-      </svg>
-      <span className="h-px w-12 bg-gradient-to-l from-gold to-transparent" />
-    </div>
+    <svg
+      viewBox="0 0 72 52"
+      className="h-12 w-[4.15rem] sm:h-14 sm:w-[4.85rem]"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id={goldId} x1="12%" y1="0%" x2="80%" y2="100%">
+          <stop offset="0%" stopColor="#f0e2c4" />
+          <stop offset="42%" stopColor="#c9a56a" />
+          <stop offset="100%" stopColor="#8d6a3a" />
+        </linearGradient>
+      </defs>
+      <path
+        fill={`url(#${goldId})`}
+        d="M4.2 30.6C4.2 18.4 11.6 8.6 24.8 5.2l1.7 5.1C17.4 12.8 13.6 18.6 13.6 26.4c2.6-1.4 5.9-1.3 8.4.4 2.7 1.9 4.2 5.1 4 8.7-.3 6.2-5.1 11-11.6 11-6.1 0-10.2-6.2-10.2-15.9Zm35.6 0C39.8 18.4 47.2 8.6 60.4 5.2l1.7 5.1C53 12.8 49.2 18.6 49.2 26.4c2.6-1.4 5.9-1.3 8.4.4 2.7 1.9 4.2 5.1 4 8.7-.3 6.2-5.1 11-11.6 11-6.1 0-10.2-6.2-10.2-15.9Z"
+      />
+    </svg>
   );
 }
 
@@ -282,7 +280,7 @@ function VerifiedMark({ label }: { label: string }) {
 }
 
 export function ReviewsTrust() {
-  const { tx } = useLang();
+  const { tx, lang } = useLang();
   const reception = clinicGallery[0];
 
   return (
@@ -296,7 +294,12 @@ export function ReviewsTrust() {
           alt={tx(reception.alt)}
           fill
           sizes="100vw"
-          className="object-cover object-[32%_48%]"
+          className={cn(
+            "object-cover",
+            lang === "en"
+              ? "object-[32%_48%] max-lg:scale-x-[-1] max-lg:object-[68%_48%]"
+              : "object-[32%_48%]",
+          )}
         />
         <div className="absolute inset-0 bg-gradient-to-l from-charcoal/80 via-charcoal/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/55 via-transparent to-charcoal/20" />
@@ -329,7 +332,7 @@ function QuickBookForm() {
   useEffect(() => {
     const apply = (slug: string | null) => {
       if (!slug) return;
-      if (slug === "consult" || featuredServices.some((s) => s.slug === slug)) {
+      if (slug === "consult" || services.some((s) => s.slug === slug)) {
         setService(slug);
       }
     };
@@ -343,7 +346,7 @@ function QuickBookForm() {
     return () => window.removeEventListener("tclinics:booking-service", onPrefill);
   }, []);
 
-  const selected = featuredServices.find((s) => s.slug === service);
+  const selected = services.find((s) => s.slug === service);
   const serviceLabel =
     service === "consult" ? t("consult") : selected ? tx(selected.name) : "";
 
@@ -366,7 +369,7 @@ function QuickBookForm() {
     <form
       onSubmit={onSubmit}
       aria-labelledby={headingId}
-      className="quick-book w-full max-w-[22rem] border-s-2 border-gold ps-6 text-ivory ltr:ms-auto"
+      className="quick-book mx-auto w-full max-w-[22rem] border-s-2 border-gold ps-6 text-ivory lg:mx-0 ltr:lg:ms-auto"
     >
       {sent ? (
         <div>
@@ -428,7 +431,10 @@ function QuickBookForm() {
               placeholder={t("bookingPhoneExample")}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full rounded-2xl border bg-transparent px-4 py-3.5 text-end text-sm text-ivory outline-none transition placeholder:text-ivory/40"
+              className={cn(
+                "w-full rounded-2xl border bg-transparent px-4 py-3.5 text-sm text-ivory outline-none transition placeholder:text-ivory/40",
+                lang === "en" ? "text-left" : "text-right",
+              )}
             />
           </label>
 
@@ -445,7 +451,7 @@ function QuickBookForm() {
                 {t("bookingStep1")}
               </option>
               <option value="consult">{t("consult")}</option>
-              {featuredServices.map((s) => (
+              {services.map((s) => (
                 <option key={s.slug} value={s.slug}>
                   {tx(s.name)}
                 </option>

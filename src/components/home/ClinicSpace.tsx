@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { cn, displayHeading } from "@/lib/cn";
 import { clinicSpacePhotos } from "@/lib/content";
@@ -13,6 +13,7 @@ export function ClinicSpace() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const indexRef = useRef(0);
   const pageSizeRef = useRef(1);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -46,10 +47,24 @@ export function ClinicSpace() {
         }
       });
       indexRef.current = best;
+      setActive(best);
     };
 
     root.addEventListener("scroll", sync, { passive: true });
     return () => root.removeEventListener("scroll", sync);
+  }, []);
+
+  const goTo = useCallback((index: number) => {
+    const root = scrollerRef.current;
+    if (!root) return;
+    const next = Math.max(0, Math.min(clinicSpacePhotos.length - 1, index));
+    indexRef.current = next;
+    setActive(next);
+    const child = root.children[next] as HTMLElement | undefined;
+    if (!child) return;
+    const delta = child.getBoundingClientRect().left - root.getBoundingClientRect().left;
+    if (Math.abs(delta) < 2) return;
+    root.scrollBy({ left: delta, behavior: "smooth" });
   }, []);
 
   useEffect(() => {
@@ -69,18 +84,6 @@ export function ClinicSpace() {
     );
     observer.observe(section);
 
-    const lastStart = () => Math.max(0, clinicSpacePhotos.length - pageSizeRef.current);
-
-    const goTo = (index: number) => {
-      const max = lastStart();
-      const next = ((index % (max + 1)) + (max + 1)) % (max + 1);
-      indexRef.current = next;
-      const child = root.children[next] as HTMLElement | undefined;
-      if (!child) return;
-      const delta = child.getBoundingClientRect().left - root.getBoundingClientRect().left;
-      root.scrollBy({ left: delta, behavior: "smooth" });
-    };
-
     const pause = () => {
       paused = true;
     };
@@ -95,7 +98,9 @@ export function ClinicSpace() {
 
     const id = window.setInterval(() => {
       if (!inView || paused) return;
-      goTo(indexRef.current + 1);
+      const max = Math.max(0, clinicSpacePhotos.length - pageSizeRef.current);
+      if (max === 0) return;
+      goTo((indexRef.current + 1) % clinicSpacePhotos.length);
     }, 4000);
 
     return () => {
@@ -106,7 +111,7 @@ export function ClinicSpace() {
       root.removeEventListener("pointercancel", resume);
       root.removeEventListener("touchend", resume);
     };
-  }, []);
+  }, [goTo]);
 
   return (
     <section
@@ -157,6 +162,22 @@ export function ClinicSpace() {
                 className="object-cover object-center transition-transform duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
               />
             </figure>
+          ))}
+        </div>
+
+        <div className="mt-8 flex items-center justify-center gap-2">
+          {clinicSpacePhotos.map((photo, i) => (
+            <button
+              key={photo.src}
+              type="button"
+              aria-label={tx(photo.alt)}
+              aria-current={i === active}
+              onClick={() => goTo(i)}
+              className={cn(
+                "h-1.5 rounded-full transition-all",
+                i === active ? "w-7 bg-gold" : "w-2.5 bg-ivory/25 hover:bg-gold/70",
+              )}
+            />
           ))}
         </div>
       </div>
