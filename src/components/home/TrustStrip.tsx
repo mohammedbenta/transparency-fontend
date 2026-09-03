@@ -1,73 +1,74 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 import { teamMembers } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
 
-const patientsLabel = String(site.proof.patients);
-const yearsLabel = String(site.proof.years);
-const consultantsLabel = String(teamMembers.length);
-
 const numClass =
-  "font-sans text-[1.65rem] font-light leading-none tabular-nums tracking-tight text-gold sm:text-5xl lg:text-[3.5rem]";
+  "stat-num font-sans text-[2.75rem] font-light leading-none tabular-nums tracking-[-0.04em] text-gold sm:text-6xl lg:text-[4.35rem]";
+
+const labelClass =
+  "mt-2.5 max-w-[11rem] text-[11px] leading-4 tracking-[0.18em] text-ivory/55 uppercase sm:mt-3.5 sm:max-w-none sm:text-[12px] sm:leading-5 sm:tracking-[0.24em]";
 
 export function TrustStrip() {
   const { t } = useLang();
+  const started = useInViewOnce();
 
   return (
-    <section className="bg-forest">
+    <section id="trust" className="bg-forest-deep">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="hairline" />
-        <ul className="flex flex-nowrap items-start justify-between gap-2 py-8 sm:justify-center sm:gap-0 sm:py-12 lg:py-14">
+        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 py-10 sm:gap-x-8 sm:py-14 lg:grid-cols-4 lg:gap-0 lg:py-16">
           <li className="min-w-0">
             <a
               href={site.reviews.mapsReviewsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-start transition hover:opacity-80"
+              className="flex flex-col items-center text-center transition hover:opacity-80"
             >
-              <span className="flex items-center gap-1 sm:gap-2.5">
+              <span className="flex items-center gap-1.5 sm:gap-3">
                 <StarIcon />
-                <span className={numClass} dir="ltr">
-                  {site.reviews.rating}
-                </span>
+                <StatNum
+                  value={site.reviews.rating}
+                  decimals={1}
+                  started={started}
+                />
               </span>
-              <span className="mt-2 text-start text-[10px] leading-4 tracking-[0.24em] text-ivory/55 uppercase sm:mt-3 sm:text-[11px] sm:leading-5 sm:tracking-[0.28em]">
-                {t("trustRating")}
-              </span>
+              <span className={labelClass}>{t("trustRating")}</span>
             </a>
           </li>
-          <Dot />
-          <li className="min-w-0">
-            <div className="flex flex-col items-start">
-              <span className={numClass} dir="ltr">
-                {consultantsLabel}
-              </span>
-              <span className="mt-2 text-start text-[10px] leading-4 tracking-[0.24em] text-ivory/55 uppercase sm:mt-3 sm:text-[11px] sm:leading-5 sm:tracking-[0.28em]">
-                {t("trustConsultants")}
-              </span>
+          <li className="relative min-w-0 lg:before:absolute lg:before:inset-y-1 lg:before:start-0 lg:before:w-px lg:before:bg-gold/20">
+            <div className="flex flex-col items-center text-center">
+              <StatNum
+                value={teamMembers.length}
+                started={started}
+                delay={90}
+              />
+              <span className={labelClass}>{t("trustConsultants")}</span>
             </div>
           </li>
-          <Dot />
-          <li className="min-w-0">
-            <div className="flex flex-col items-start">
-              <span className={numClass} dir="ltr">
-                {patientsLabel}
-              </span>
-              <span className="mt-2 text-start text-[10px] leading-4 tracking-[0.24em] text-ivory/55 uppercase sm:mt-3 sm:text-[11px] sm:leading-5 sm:tracking-[0.28em]">
-                {t("trustPatients")}
-              </span>
+          <li className="relative min-w-0 lg:before:absolute lg:before:inset-y-1 lg:before:start-0 lg:before:w-px lg:before:bg-gold/20">
+            <div className="flex flex-col items-center text-center">
+              <StatNum
+                value={site.proof.patients}
+                locale
+                suffix="+"
+                started={started}
+                delay={160}
+              />
+              <span className={labelClass}>{t("trustPatients")}</span>
             </div>
           </li>
-          <Dot />
-          <li className="min-w-0">
-            <div className="flex flex-col items-start">
-              <span className={numClass} dir="ltr">
-                {yearsLabel}
-              </span>
-              <span className="mt-2 text-start text-[10px] leading-4 tracking-[0.24em] text-ivory/55 uppercase sm:mt-3 sm:text-[11px] sm:leading-5 sm:tracking-[0.28em]">
-                {t("trustYears")}
-              </span>
+          <li className="relative min-w-0 lg:before:absolute lg:before:inset-y-1 lg:before:start-0 lg:before:w-px lg:before:bg-gold/20">
+            <div className="flex flex-col items-center text-center">
+              <StatNum
+                value={site.proof.years}
+                suffix="+"
+                started={started}
+                delay={230}
+              />
+              <span className={labelClass}>{t("trustYears")}</span>
             </div>
           </li>
         </ul>
@@ -77,18 +78,109 @@ export function TrustStrip() {
   );
 }
 
-function Dot() {
+function StatNum({
+  value,
+  decimals = 0,
+  locale = false,
+  suffix = "",
+  started,
+  delay = 0,
+}: {
+  value: number;
+  decimals?: number;
+  locale?: boolean;
+  suffix?: string;
+  started: boolean;
+  delay?: number;
+}) {
+  const current = useCountUp(value, started, delay);
+  const text = formatStat(current, decimals, locale) + suffix;
+  const final = formatStat(value, decimals, locale) + suffix;
+
   return (
-    <li
-      aria-hidden
-      className="mt-3 h-1 w-1 shrink-0 self-start rounded-full bg-gold/55 sm:mx-8 sm:mt-6 lg:mx-12"
-    />
+    <span className={numClass} dir="ltr" aria-label={final}>
+      {text}
+    </span>
   );
+}
+
+function formatStat(n: number, decimals: number, locale: boolean) {
+  if (locale) {
+    return Math.round(n).toLocaleString("en-US");
+  }
+  return n.toFixed(decimals);
+}
+
+function useInViewOnce() {
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = document.getElementById("trust");
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return started;
+}
+
+function useCountUp(target: number, started: boolean, delay: number) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!started) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setValue(target);
+      return;
+    }
+
+    let raf = 0;
+    let timer = 0;
+    const duration = 1600;
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const run = () => {
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min(1, (now - t0) / duration);
+        setValue(target * ease(p));
+        if (p < 1) raf = requestAnimationFrame(tick);
+        else setValue(target);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+
+    if (delay) timer = window.setTimeout(run, delay);
+    else run();
+
+    return () => {
+      window.clearTimeout(timer);
+      cancelAnimationFrame(raf);
+    };
+  }, [started, target, delay]);
+
+  return value;
 }
 
 function StarIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-gold sm:h-8 sm:w-8" aria-hidden>
+    <svg
+      viewBox="0 0 24 24"
+      className="h-6 w-6 fill-gold sm:h-8 sm:w-8 lg:h-9 lg:w-9"
+      aria-hidden
+    >
       <path d="M12 2.6 14.7 8.8l6.8.6-5.2 4.5 1.6 6.6L12 17.2 6.1 20.5l1.6-6.6L2.5 9.4l6.8-.6z" />
     </svg>
   );

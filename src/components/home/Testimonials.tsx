@@ -4,13 +4,14 @@ import { FormEvent, useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
-import { cn } from "@/lib/cn";
+import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
 import { clinicGallery, reviewsPhotos, testimonials, featuredServices } from "@/lib/content";
 import { site, telHref, whatsappHref } from "@/lib/site";
+import { BOOKING_ID, scrollToBooking } from "@/lib/booking";
 
 export function Testimonials() {
-  const { t, tx } = useLang();
+  const { t, tx, lang } = useLang();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [pairMode, setPairMode] = useState(false);
@@ -64,7 +65,7 @@ export function Testimonials() {
     <section id="testimonials" className="bg-cream px-5 py-28 lg:px-8 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-          <figure className="relative aspect-[3/4] overflow-hidden [border-radius:999px_999px_1.75rem_1.75rem] lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto">
+          <figure className="relative aspect-[3/4] overflow-hidden [border-radius:999px_999px_1.75rem_1.75rem] ring-1 ring-gold/25 lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto">
             {reviewsPhotos.map((photo, i) => (
               <Image
                 key={photo.src}
@@ -88,7 +89,12 @@ export function Testimonials() {
                   {t("reviewsEyebrow")}
                 </p>
               </div>
-              <h2 className="mt-4 text-3xl font-light leading-[1.15] tracking-[-0.01em] text-ivory sm:text-[2.5rem]">
+              <h2
+                className={cn(
+                  "mt-4 text-3xl leading-[1.15] text-ivory sm:text-[2.5rem]",
+                  displayHeading(lang),
+                )}
+              >
                 {t("reviewsTitle")}
               </h2>
             </figcaption>
@@ -203,9 +209,9 @@ function QuoteMark() {
       >
         <defs>
           <linearGradient id={goldId} x1="12%" y1="0%" x2="80%" y2="100%">
-            <stop offset="0%" stopColor="#ead7b4" />
-            <stop offset="42%" stopColor="#c2a06a" />
-            <stop offset="100%" stopColor="#8d6c3e" />
+            <stop offset="0%" stopColor="#f0e2c4" />
+            <stop offset="42%" stopColor="#c9a56a" />
+            <stop offset="100%" stopColor="#8d6a3a" />
           </linearGradient>
         </defs>
         <path
@@ -283,7 +289,7 @@ export function ReviewsTrust() {
     <section className="border-t border-line bg-ivory">
       <div
         id="quick-book"
-        className="relative min-h-[42rem] scroll-mt-24 overflow-hidden bg-charcoal sm:min-h-[38rem] lg:min-h-[44rem]"
+        className="relative min-h-[42rem] scroll-mt-28 overflow-hidden bg-charcoal sm:min-h-[38rem] lg:min-h-[44rem]"
       >
         <Image
           src={reception.src}
@@ -313,11 +319,28 @@ function QuickBookForm() {
   const [sent, setSent] = useState(false);
 
   useEffect(() => {
-    const slug = new URLSearchParams(window.location.search).get("service");
-    if (!slug) return;
-    if (slug === "consult" || featuredServices.some((s) => s.slug === slug)) {
-      setService(slug);
+    if (window.location.hash === `#${BOOKING_ID}`) {
+      window.requestAnimationFrame(() => {
+        scrollToBooking();
+      });
     }
+  }, []);
+
+  useEffect(() => {
+    const apply = (slug: string | null) => {
+      if (!slug) return;
+      if (slug === "consult" || featuredServices.some((s) => s.slug === slug)) {
+        setService(slug);
+      }
+    };
+
+    apply(new URLSearchParams(window.location.search).get("service"));
+
+    const onPrefill = (event: Event) => {
+      apply((event as CustomEvent<{ service?: string }>).detail?.service ?? null);
+    };
+    window.addEventListener("tclinics:booking-service", onPrefill);
+    return () => window.removeEventListener("tclinics:booking-service", onPrefill);
   }, []);
 
   const selected = featuredServices.find((s) => s.slug === service);
@@ -368,7 +391,13 @@ function QuickBookForm() {
           <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
             {t("nav.booking")}
           </p>
-          <h2 id={headingId} className="mt-3 text-3xl font-light leading-snug sm:text-4xl">
+          <h2
+            id={headingId}
+            className={cn(
+              "mt-3 text-3xl leading-snug sm:text-4xl",
+              displayHeading(lang),
+            )}
+          >
             {t("reviewsBookTitle")}
           </h2>
           <p className="mt-3 text-sm leading-7 text-ivory/90">{t("reviewsBookLead")}</p>

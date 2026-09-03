@@ -5,13 +5,13 @@ import Link from "next/link";
 import { BookingCta } from "@/components/BookingModal";
 import { Button } from "@/components/Button";
 import { FAQ } from "@/components/home/FAQ";
-import { FinalCTA } from "@/components/home/FinalCTA";
+import { cn, displayHeading, formatFromUsd } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
 import { doctors, type Service } from "@/lib/content";
 import { whatsappHref } from "@/lib/site";
 
 export function ServiceDetail({ service }: { service: Service }) {
-  const { t, tx } = useLang();
+  const { t, tx, lang } = useLang();
   const doctor = doctors[0];
 
   const blocks = [
@@ -34,12 +34,22 @@ export function ServiceDetail({ service }: { service: Service }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-charcoal/30" />
         <div className="relative mx-auto flex min-h-[70vh] max-w-7xl flex-col justify-end px-5 pb-16 pt-32 lg:px-8">
-          <Link href="/services" className="text-sm text-gold">
+          <Link href="/services" className="text-sm tracking-[0.04em] text-gold">
             {t("allServices")}
           </Link>
-          <h1 className="mt-4 max-w-3xl text-4xl font-light leading-snug sm:text-6xl">
+          <h1
+            className={cn(
+              "mt-4 max-w-3xl text-4xl leading-[1.12] sm:text-6xl",
+              displayHeading(lang),
+            )}
+          >
             {tx(service.name)}
           </h1>
+          {service.fromUsd ? (
+            <p className="mt-4 font-serif text-lg tracking-[0.06em] text-gold">
+              {formatFromUsd(lang, service.fromUsd)}
+            </p>
+          ) : null}
           <p className="mt-5 max-w-xl text-lg leading-8 text-ivory/75">
             {tx(service.problem)}
           </p>
@@ -54,14 +64,14 @@ export function ServiceDetail({ service }: { service: Service }) {
           <div className="space-y-16 lg:col-span-8">
             {blocks.map((b) => (
               <section key={b.title.en}>
-                <h2 className="text-2xl font-light sm:text-3xl">{tx(b.title)}</h2>
+                <h2 className={cn("text-2xl sm:text-3xl", displayHeading(lang))}>{tx(b.title)}</h2>
                 <div className="gold-rule mt-4" />
                 <p className="mt-6 max-w-2xl text-base leading-8 text-muted">{tx(b.body)}</p>
               </section>
             ))}
 
             <section>
-              <h2 className="text-2xl font-light sm:text-3xl">
+              <h2 className={cn("text-2xl sm:text-3xl", displayHeading(lang))}>
                 {t("doctorsTitle")}
               </h2>
               <div className="gold-rule mt-4" />
@@ -77,13 +87,18 @@ export function ServiceDetail({ service }: { service: Service }) {
             </section>
           </div>
 
-          <aside className="h-fit rounded-2xl border border-line bg-surface p-8 lg:col-span-4 lg:sticky lg:top-24">
+          <aside className="h-fit rounded-[1.35rem] border border-gold/30 bg-surface p-8 lg:col-span-4 lg:sticky lg:top-24">
             <p className="text-[11px] tracking-[0.22em] text-gold-deep uppercase">
               {t("book")}
             </p>
+            {service.fromUsd ? (
+              <p className="mt-3 font-serif text-2xl text-gold-deep">
+                {formatFromUsd(lang, service.fromUsd)}
+              </p>
+            ) : null}
             <p className="mt-3 text-lg leading-8">{tx(service.summary)}</p>
             <div className="mt-8 flex flex-col gap-3">
-              <BookingCta service={service.slug} />
+              <BookingCta variant="gold" service={service.slug} />
               <Button href={whatsappHref(t("waDefault"))} variant="ghost" external>
                 {t("whatsapp")}
               </Button>
@@ -93,7 +108,6 @@ export function ServiceDetail({ service }: { service: Service }) {
       </article>
 
       <FAQ />
-      <FinalCTA />
     </>
   );
 }

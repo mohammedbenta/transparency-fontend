@@ -23,14 +23,16 @@ export function Logo({
       className={cn("inline-flex min-w-0 items-center", className)}
       aria-label={t("logoAria")}
     >
-      <Image
-        src="/images/brand/logo-wordmark.png"
-        alt=""
-        width={927}
-        height={170}
-        priority={priority}
-        className="h-8 w-auto object-contain shadow-none drop-shadow-none sm:h-9"
-      />
+      <span className="relative block h-7 w-[10.75rem] sm:h-10 sm:w-[15rem]">
+        <Image
+          src="/images/brand/logo-wordmark.png"
+          alt=""
+          fill
+          sizes="(max-width: 640px) 172px, 240px"
+          priority={priority}
+          className="object-contain object-left"
+        />
+      </span>
     </Link>
   );
 }

@@ -23,6 +23,7 @@ export type Service = {
   why: Text;
   image: string;
   imageAlt: Text;
+  fromUsd?: number;
 };
 
 export const services: Service[] = [
@@ -58,6 +59,7 @@ export const services: Service[] = [
       ar: "ابتسامة قريبة بعد عناية تجميلية",
       en: "A close smile after aesthetic dental care",
     },
+    fromUsd: 5000,
   },
   {
     slug: "prosthodontics",
@@ -190,6 +192,7 @@ export const services: Service[] = [
       ar: "رسم يوضح زرعة الأسنان: تاج ودعامة وبرغي في العظم",
       en: "Diagram of a dental implant: crown, abutment, and fixture in the bone",
     },
+    fromUsd: 5000,
   },
   {
     slug: "general-care",
@@ -327,27 +330,27 @@ export const testimonials = [
 
 export const ceoValues = [
   {
-    id: "beyond",
-    label: { ar: "تتجاوز التوقعات", en: "Beyond expectations" },
+    id: "care-luxury",
+    label: { ar: "الرفاهية في العناية", en: "Luxury in care" },
     body: {
-      ar: "معايير نضعها لأنفسنا أعلى مما يُطلب منّا — في التشخيص، والإنجاز، وأدق التفاصيل.",
-      en: "Standards we hold ourselves to, higher than what is asked — in diagnosis, execution, and the smallest details.",
+      ar: "الرفاهية هنا في اليد والشرح — لا في الرخام فقط.",
+      en: "Luxury is how you are treated — not only how the room looks.",
     },
   },
   {
-    id: "personalized",
-    label: { ar: "عناية شخصية", en: "Personalized care" },
+    id: "private-visit",
+    label: { ar: "زيارة خاصة", en: "Private visit" },
     body: {
-      ar: "خطة تُبنى حولك وحدك — بعد أن نُصغي، ونفهم، ونشرح كل خيار قبل أي خطوة.",
-      en: "A plan built around you alone — after we listen, understand, and explain every option before a single step.",
+      ar: "الموعد لك وحدك: خصوصية، هدوء، ووقت لا يُقسَّم على غيرك.",
+      en: "The hour is yours — privacy, quiet, and time that is not shared.",
     },
   },
   {
-    id: "experience",
-    label: { ar: "تجربة راقية فريدة", en: "A rare experience" },
+    id: "hospitality",
+    label: { ar: "ضيافة راقية", en: "Fine hospitality" },
     body: {
-      ar: "فريق مُختار، تقنيات دقيقة، ومكانٌ صُمِّم للهدوء — يقاس بالإحساس، لا بالوقت.",
-      en: "A chosen team, precise technology, and a space designed for calm — measured in feeling, not in minutes.",
+      ar: "المكان والإيقاع صُمِّما كضيافة فاخرة — لا كعيادة انتظار.",
+      en: "The setting and the pace were designed as hospitality — not a waiting room.",
     },
   },
 ] as const;
@@ -453,6 +456,33 @@ export const clinicGallery = [
       en: "Smile detail in quiet light",
     },
     caption: { ar: "التفاصيل", en: "Detail" },
+  },
+] as const;
+
+export const clinicSpacePhotos = [
+  {
+    src: "/images/clinic/lounge-sofa.jpg",
+    alt: {
+      ar: "صالة الجلوس: أريكة جلد بنّية، طاولة سوداء، وضوء نهاري من النوافذ",
+      en: "The sitting room: a tan leather sofa, black table, and daylight from the windows",
+    },
+    caption: { ar: "الجلوس", en: "Sitting room" },
+  },
+  {
+    src: "/images/clinic/lounge-terrace.jpg",
+    alt: {
+      ar: "ركن الزجاج: مقاعد خشبية ووسائد صفراء تطل على التراس",
+      en: "The glass corner: wooden benches and yellow cushions looking onto the terrace",
+    },
+    caption: { ar: "التراس", en: "Terrace" },
+  },
+  {
+    src: "/images/clinic/treatment-glass.jpg",
+    alt: {
+      ar: "غرفة العلاج: وحدة الأسنان أمام زجاج يطل على نبات وحصى أبيض",
+      en: "Treatment room: the dental unit against glass looking onto a plant and white stone",
+    },
+    caption: { ar: "العلاج", en: "Treatment" },
   },
 ] as const;
 

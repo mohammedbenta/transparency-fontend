@@ -14,6 +14,7 @@ import { useLang } from "@/lib/i18n";
 import { doctors, featuredServices, services } from "@/lib/content";
 import { site, telHref, whatsappHref } from "@/lib/site";
 import { Button } from "@/components/Button";
+import { bookingHref, handleBookingClick } from "@/lib/booking";
 
 type Prefill = { service?: string };
 
@@ -59,11 +60,14 @@ export function BookingCta({
   arrow?: boolean;
 }) {
   const { t } = useLang();
-  const href = service
-    ? `/?service=${encodeURIComponent(service)}#quick-book`
-    : "/#quick-book";
   return (
-    <Button href={href} variant={variant} className={className} arrow={arrow}>
+    <Button
+      href={bookingHref(service)}
+      variant={variant}
+      className={className}
+      arrow={arrow}
+      onClick={(e) => handleBookingClick(e, service)}
+    >
       {t("book")}
     </Button>
   );
@@ -173,7 +177,7 @@ function BookingDialog({
       onClick={onClose}
     >
       <div
-        className="max-h-[92vh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-surface sm:rounded-3xl"
+        className="max-h-[92vh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-surface sm:rounded-3xl vip-panel-light"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-5">
@@ -372,7 +376,7 @@ function BookingDialog({
                       setError("");
                       setStep((s) => s + 1);
                     }}
-                    className="rounded-full bg-forest px-6 py-2.5 text-sm text-ivory disabled:opacity-40"
+                    className="rounded-full btn-gold-metal px-6 py-2.5 text-sm disabled:opacity-40"
                   >
                     {t("bookingNext")}
                   </button>
@@ -380,7 +384,7 @@ function BookingDialog({
                   <button
                     type="button"
                     onClick={submit}
-                    className="rounded-full bg-forest px-6 py-2.5 text-sm text-ivory"
+                    className="rounded-full btn-gold-metal px-6 py-2.5 text-sm"
                   >
                     {t("bookingSubmit")}
                   </button>

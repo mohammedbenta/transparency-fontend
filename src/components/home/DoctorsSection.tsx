@@ -4,12 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { cn } from "@/lib/cn";
+import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
 import { teamMembers } from "@/lib/content";
 
 export function DoctorsSection({ className }: { className?: string }) {
-  const { t, tx } = useLang();
+  const { t, tx, lang } = useLang();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -45,17 +45,23 @@ export function DoctorsSection({ className }: { className?: string }) {
   return (
     <section id="doctors" className={cn("bg-charcoal py-28 text-ivory lg:py-36", className)}>
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal>
-          <div className="flex items-center gap-4">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <div className="flex items-center justify-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
             <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
               {t("doctorsEyebrow")}
             </p>
+            <span aria-hidden className="h-px w-10 bg-gold/70" />
           </div>
-          <h2 className="mt-7 max-w-2xl text-3xl font-light leading-[1.15] tracking-[-0.01em] sm:text-[3.15rem]">
+          <h2
+            className={cn(
+              "mt-7 text-3xl leading-[1.15] sm:text-[3.15rem]",
+              displayHeading(lang),
+            )}
+          >
             {t("doctorsTitle")}
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-8 text-ivory/65 sm:text-[1.05rem]">{t("doctorsLead")}</p>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-ivory/65 sm:text-[1.05rem]">{t("doctorsLead")}</p>
         </Reveal>
 
         <div
@@ -64,7 +70,7 @@ export function DoctorsSection({ className }: { className?: string }) {
         >
           {teamMembers.map((doctor) => {
             const card = (
-              <div className="img-zoom relative aspect-[3/4] overflow-hidden rounded-[1.25rem] bg-ink">
+              <div className="img-zoom relative aspect-[3/4] overflow-hidden rounded-[1.35rem] bg-ink">
                 <Image
                   src={doctor.photo}
                   alt={`${tx(doctor.name)} — ${tx(doctor.role)}`}
@@ -89,7 +95,7 @@ export function DoctorsSection({ className }: { className?: string }) {
             );
 
             const frame =
-              "block overflow-hidden rounded-[1.25rem] ring-1 ring-white/[0.07] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ring-gold/50 hover:-translate-y-1";
+              "block overflow-hidden rounded-[1.35rem] ring-1 ring-gold/20 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:ring-gold/55 hover:-translate-y-1";
 
             return (
               <article

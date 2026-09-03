@@ -49,7 +49,7 @@ export function StickyActions() {
       <a
         href={telHref}
         aria-label={t("callAria")}
-        className="group grid h-14 w-14 place-items-center rounded-full text-ink shadow-[0_18px_44px_-18px_rgba(194,160,106,0.9),0_0_0_1px_rgba(255,252,245,0.25)_inset] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] [background-image:linear-gradient(160deg,#e7d3ab_0%,#c2a06a_42%,#8d6c3e_100%)] hover:-translate-y-0.5 hover:text-ivory hover:shadow-[0_24px_54px_-18px_rgba(194,160,106,1)] hover:[background-image:linear-gradient(160deg,#c2a06a_0%,#967548_55%,#7a5c32_100%)]"
+        className="group grid h-14 w-14 place-items-center rounded-full text-ink shadow-[0_18px_44px_-18px_rgba(201,165,106,0.95),0_0_0_1px_rgba(255,252,245,0.25)_inset] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] [background-image:linear-gradient(160deg,#f0e2c4_0%,#c9a56a_42%,#8d6a3a_100%)] hover:-translate-y-0.5 hover:text-ivory hover:shadow-[0_24px_54px_-18px_rgba(201,165,106,1)] hover:[background-image:linear-gradient(160deg,#c9a56a_0%,#9a7040_55%,#7a562c_100%)]"
       >
         <PhoneIcon />
       </a>

@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { cn } from "@/lib/cn";
+import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
 import { beforeAfter } from "@/lib/content";
 
 export function BeforeAfter() {
-  const { t, tx } = useLang();
+  const { t, tx, lang } = useLang();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -50,17 +50,23 @@ export function BeforeAfter() {
   return (
     <section id="results" className="bg-ivory py-28 lg:py-36">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <Reveal>
-          <div className="flex items-center gap-4">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <div className="flex items-center justify-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
             <p className="text-[11px] tracking-[0.32em] text-gold-deep uppercase">
               {t("baEyebrow")}
             </p>
+            <span aria-hidden className="h-px w-10 bg-gold/70" />
           </div>
-          <h2 className="mt-7 max-w-2xl text-3xl font-light leading-[1.15] tracking-[-0.01em] sm:text-[3.15rem]">
+          <h2
+            className={cn(
+              "mt-7 text-3xl leading-[1.15] sm:text-[3.15rem]",
+              displayHeading(lang),
+            )}
+          >
             {t("baTitle")}
           </h2>
-          <p className="mt-6 max-w-xl text-base leading-8 text-muted sm:text-[1.05rem]">{t("baLead")}</p>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-muted sm:text-[1.05rem]">{t("baLead")}</p>
         </Reveal>
       </div>
 
@@ -78,20 +84,40 @@ export function BeforeAfter() {
             </article>
           ))}
         </div>
-        <div className="mx-auto mt-8 flex max-w-7xl items-center justify-center gap-2">
-          {beforeAfter.map((item, i) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-label={tx(item.title)}
-              aria-current={i === active}
-              onClick={() => goTo(i)}
-              className={cn(
-                "h-1.5 rounded-full transition-all",
-                i === active ? "w-7 bg-gold" : "w-2.5 bg-sand hover:bg-gold/70",
-              )}
-            />
-          ))}
+        <div className="mx-auto mt-8 flex max-w-7xl items-center justify-center gap-4">
+          <button
+            type="button"
+            onClick={() => goTo(active - 1)}
+            disabled={active === 0}
+            aria-label={t("baPrev")}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
+          >
+            ‹
+          </button>
+          <div className="flex items-center justify-center gap-2">
+            {beforeAfter.map((item, i) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-label={tx(item.title)}
+                aria-current={i === active}
+                onClick={() => goTo(i)}
+                className={cn(
+                  "h-1.5 rounded-full transition-all",
+                  i === active ? "w-7 bg-gold" : "w-2.5 bg-sand hover:bg-gold/70",
+                )}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => goTo(active + 1)}
+            disabled={active === beforeAfter.length - 1}
+            aria-label={t("baNext")}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>
@@ -136,7 +162,7 @@ function Compare({
   return (
     <div
       ref={ref}
-      className="relative aspect-[5/3] cursor-ew-resize touch-none select-none overflow-hidden rounded-[1.25rem] bg-charcoal ring-1 ring-line/60 shadow-[0_24px_60px_-30px_rgba(20,19,17,0.4)]"
+      className="relative aspect-[5/3] cursor-ew-resize touch-none select-none overflow-hidden rounded-[1.35rem] bg-charcoal ring-1 ring-gold/25 shadow-[0_24px_60px_-30px_rgba(12,11,9,0.45)]"
       onPointerDown={onPointerDown}
       onPointerMove={(e) => dragging.current && update(e.clientX)}
       onPointerUp={() => {

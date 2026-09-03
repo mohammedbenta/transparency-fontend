@@ -4,11 +4,12 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { BookingCta } from "@/components/BookingModal";
 import { Button } from "@/components/Button";
+import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
-import { whatsappHref } from "@/lib/site";
+import { site, whatsappHref } from "@/lib/site";
 
 export function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const mobileRef = useRef<HTMLVideoElement>(null);
   const desktopRef = useRef<HTMLVideoElement>(null);
 
@@ -95,38 +96,58 @@ export function Hero() {
         sizes="100vw"
         className="hidden object-cover object-center opacity-70 md:motion-reduce:block"
       />
-      <div className="absolute inset-0 bg-gradient-to-l from-charcoal/90 via-charcoal/55 to-charcoal/20 rtl:bg-gradient-to-r" />
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/10 to-charcoal/45" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_60%_at_50%_100%,rgba(20,19,17,0.55),transparent_60%)]" />
+      <div className="absolute inset-0 bg-gradient-to-l from-charcoal/92 via-charcoal/58 to-charcoal/25 rtl:bg-gradient-to-r" />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/12 to-charcoal/50" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_60%_at_50%_100%,rgba(12,11,9,0.62),transparent_60%)]" />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pt-24 pb-[max(5rem,calc(env(safe-area-inset-bottom)+3.25rem))] lg:px-8 lg:pt-28 lg:pb-24">
+      <div className="relative mx-auto flex min-h-[100svh] w-full min-w-0 max-w-7xl flex-col justify-end px-5 pt-24 pb-[max(5rem,calc(env(safe-area-inset-bottom)+3.25rem))] lg:px-8 lg:pt-28 lg:pb-24">
         <div className="flex items-center gap-4">
           <span aria-hidden className="h-px w-10 bg-gold/70" />
           <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
             {t("heroEyebrow")}
           </p>
         </div>
-        <h1 className="mt-7 max-w-3xl text-[2.5rem] font-light leading-[1.12] tracking-[-0.015em] sm:text-[3.4rem] lg:text-[4.4rem] lg:leading-[1.08]">
+        <h1
+          className={cn(
+            "mt-7 max-w-full text-[1.9rem] leading-[1.22] sm:max-w-3xl sm:text-[3.4rem] lg:text-[4.4rem] lg:leading-[1.08]",
+            displayHeading(lang),
+          )}
+        >
           {t("heroTitle")}{" "}
-          <span className="font-medium">{t("heroTitleEmph")}</span>
+          <span className="gold-foil font-medium">{t("heroTitleEmph")}</span>
         </h1>
-        <p className="mt-8 max-w-xl text-base leading-8 text-ivory/75 sm:text-[1.075rem] sm:leading-9">
+        <p className="mt-8 max-w-xl text-base font-light leading-8 text-ivory/75 sm:text-[1.075rem] sm:leading-9">
           {t("heroLead")}
         </p>
-        <div className="mt-11 flex flex-wrap items-center gap-3">
-          <BookingCta variant="gold" arrow={false} className="btn-cta" />
+        <div className="mt-11 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
+          <BookingCta variant="gold" arrow={false} className="btn-cta w-full sm:w-auto" />
           <Button
             href={whatsappHref(t("waDefault"))}
             variant="secondary"
             external
             arrow={false}
+            className="w-full sm:w-auto"
           >
             {t("whatsapp")}
           </Button>
         </div>
-        <div className="mt-14 flex items-center justify-between gap-6 border-t border-ivory/10 pt-6">
+        <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+            <StarMark />
+            <span dir="ltr">{site.reviews.rating} Google</span>
+          </li>
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+            <ShieldMark />
+            <span>{t("heroIconPrivacy")}</span>
+          </li>
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+            <ClockMark />
+            <span>{lang === "ar" ? site.hours.timeAr : site.hours.timeEn}</span>
+          </li>
+        </ul>
+        <div className="mt-14 flex items-center justify-between gap-6 border-t border-gold/20 pt-6">
           <div className="flex items-center gap-3 text-[11px] tracking-[0.32em] text-ivory/60 uppercase">
-            <span aria-hidden className="h-px w-6 bg-gold/70" />
+            <MapMark />
             <span>{t("heroTrust")}</span>
           </div>
           <div
@@ -141,5 +162,66 @@ export function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function iconClass() {
+  return "h-[1.05rem] w-[1.05rem] shrink-0 text-gold";
+}
+
+function StarMark() {
+  return (
+    <svg viewBox="0 0 24 24" className={iconClass()} fill="currentColor" aria-hidden>
+      <path d="M12 2.6 14.7 8.8l6.8.6-5.2 4.5 1.6 6.6L12 17.2 6.1 20.5l1.6-6.6L2.5 9.4l6.8-.6z" />
+    </svg>
+  );
+}
+
+function ShieldMark() {
+  return (
+    <svg viewBox="0 0 24 24" className={iconClass()} fill="none" aria-hidden>
+      <path
+        d="M12 3.2 5.5 5.6v5.4c0 4.1 2.7 7.8 6.5 9 3.8-1.2 6.5-4.9 6.5-9V5.6L12 3.2Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9.2 12.1 11.1 14l3.7-4.2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ClockMark() {
+  return (
+    <svg viewBox="0 0 24 24" className={iconClass()} fill="none" aria-hidden>
+      <circle cx="12" cy="12" r="8.2" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M12 7.6V12l3.2 2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function MapMark() {
+  return (
+    <svg viewBox="0 0 24 24" className={iconClass()} fill="none" aria-hidden>
+      <path
+        d="M12 21s6.2-5.4 6.2-10.2A6.2 6.2 0 0 0 12 4.6a6.2 6.2 0 0 0-6.2 6.2C5.8 15.6 12 21 12 21Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10.8" r="1.85" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
   );
 }

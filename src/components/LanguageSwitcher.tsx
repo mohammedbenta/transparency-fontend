@@ -26,7 +26,7 @@ export function LanguageSwitcher({
           "h-9 px-2.5 transition",
           lang === "ar"
             ? onLight
-              ? "bg-forest text-ivory"
+              ? "bg-gold text-ink"
               : "bg-ivory text-ink"
             : onLight
               ? "text-muted hover:text-ink"
@@ -44,7 +44,7 @@ export function LanguageSwitcher({
           "h-9 px-2.5 transition",
           lang === "en"
             ? onLight
-              ? "bg-forest text-ivory"
+              ? "bg-gold text-ink"
               : "bg-ivory text-ink"
             : onLight
               ? "text-muted hover:text-ink"

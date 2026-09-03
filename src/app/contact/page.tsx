@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { BookingCta } from "@/components/BookingModal";
 import { Button } from "@/components/Button";
+import { PageHero } from "@/components/PageHero";
 import { useLang } from "@/lib/i18n";
 import { site, telHref, mailHref, whatsappHref } from "@/lib/site";
 
@@ -12,17 +13,11 @@ export default function ContactPage() {
 
   return (
     <>
-      <header className="bg-charcoal px-5 pb-16 pt-32 text-ivory lg:px-8 lg:pt-40">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-[11px] tracking-[0.28em] text-gold uppercase">
-            {t("nav.contact")}
-          </p>
-          <h1 className="mt-4 max-w-2xl text-4xl font-light leading-snug sm:text-6xl">
-            {t("contactHero")}
-          </h1>
-          <p className="mt-5 max-w-xl text-ivory/70">{t("contactLead")}</p>
-        </div>
-      </header>
+      <PageHero
+        eyebrow={t("nav.contact")}
+        title={t("contactHero")}
+        lead={t("contactLead")}
+      />
 
       <section className="bg-ivory px-5 py-20 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-12">
@@ -55,7 +50,7 @@ export default function ContactPage() {
                 {lang === "ar" ? site.hours.timeAr : site.hours.timeEn}
               </p>
             </div>
-            <BookingCta />
+            <BookingCta variant="gold" />
           </div>
 
           <div className="lg:col-span-7">
@@ -83,7 +78,7 @@ export default function ContactPage() {
                       name="message"
                       required
                       rows={5}
-                      className="w-full rounded-2xl border border-line bg-surface px-4 py-3 outline-none focus:border-gold"
+                      className="w-full rounded-2xl border border-line bg-surface px-4 py-3 outline-none transition focus:border-gold"
                     />
                   </label>
                 </div>
@@ -100,7 +95,7 @@ export default function ContactPage() {
       <section className="bg-surface px-5 py-16 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-2xl font-light">{t("locationTitle")}</h2>
-          <div className="mt-8 overflow-hidden rounded-2xl border border-line">
+          <div className="mt-8 overflow-hidden rounded-[1.35rem] border border-gold/25">
             <iframe
               title={t("locationTitle")}
               src={site.mapsEmbed}
@@ -173,7 +168,7 @@ function Field({
         type={type}
         required={required}
         dir={dir}
-        className="w-full rounded-2xl border border-line bg-surface px-4 py-3 outline-none focus:border-gold"
+        className="w-full rounded-2xl border border-line bg-surface px-4 py-3 outline-none transition focus:border-gold"
       />
     </label>
   );

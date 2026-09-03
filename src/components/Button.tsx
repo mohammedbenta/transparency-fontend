@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { MouseEventHandler, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary" | "ghost" | "dark" | "gold";
@@ -11,7 +12,7 @@ const styles: Record<Variant, string> = {
   ghost:
     "bg-transparent text-ink border border-ink/12 hover:border-gold-deep hover:text-gold-deep hover:bg-ink/[0.02]",
   dark: "bg-charcoal text-ivory hover:bg-ink hover:-translate-y-[1px]",
-  gold: "bg-gold text-ink hover:bg-gold-deep hover:text-ivory hover:-translate-y-[1px]",
+  gold: "btn-gold-metal hover:-translate-y-[1px]",
 };
 
 export function Button({
@@ -25,8 +26,8 @@ export function Button({
   arrow = true,
 }: {
   href?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
+  onClick?: MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+  children: ReactNode;
   variant?: Variant;
   className?: string;
   external?: boolean;
@@ -70,7 +71,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={cls}>
+    <Link href={href} className={cls} onClick={onClick}>
       {inner}
     </Link>
   );

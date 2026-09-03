@@ -6,6 +6,7 @@ import { Logo } from "@/components/Logo";
 import { useLang } from "@/lib/i18n";
 import { navItems, partners, featuredServices } from "@/lib/content";
 import { site, mailHref, whatsappHref } from "@/lib/site";
+import { bookingHref, handleBookingClick } from "@/lib/booking";
 
 export function Footer() {
   const { t, tx, lang } = useLang();
@@ -18,18 +19,23 @@ export function Footer() {
 
   return (
     <footer className="bg-charcoal text-ivory">
-      <div className="h-px bg-gradient-to-l from-transparent via-gold/50 to-transparent" />
+      <div className="h-px bg-gradient-to-l from-transparent via-gold/60 to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-5 pt-20 pb-14 lg:px-8 lg:pt-28 lg:pb-16">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+      <div className="mx-auto flex max-w-7xl flex-col px-5 pt-20 pb-14 lg:px-8 lg:pt-28 lg:pb-16">
+        <div className="relative order-2 mt-16 overflow-hidden rounded-[1.35rem] ring-1 ring-gold/25 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)] lg:hidden">
+          <FooterMap title={t("locationTitle")} />
+        </div>
+
+        <div className="order-1 grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
           <div className="sm:col-span-2 lg:col-span-4">
-            <Logo className="[&_img]:h-9 sm:[&_img]:h-10" />
+            <Logo className="[&_span]:h-9 [&_span]:w-[13.5rem] sm:[&_span]:h-10 sm:[&_span]:w-[15rem]" />
             <p className="mt-6 max-w-sm text-sm font-light leading-7 text-ivory/55">
               {t("footerBlurb")}
             </p>
             <Link
-              href="/#quick-book"
-              className="group mt-8 inline-flex h-11 items-center gap-3 rounded-full border border-gold/40 px-6 text-[12.5px] tracking-[0.05em] text-gold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-gold hover:bg-gold hover:text-ink hover:-translate-y-[1px]"
+              href={bookingHref()}
+              onClick={handleBookingClick}
+              className="group mt-8 inline-flex h-11 items-center gap-3 rounded-full border border-gold/45 px-6 text-[12.5px] tracking-[0.05em] text-gold transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-gold hover:bg-gold hover:text-ink hover:-translate-y-[1px]"
             >
               <span>{t("book")}</span>
               <span
@@ -39,6 +45,9 @@ export function Footer() {
                 →
               </span>
             </Link>
+            <div className="relative mt-10 hidden overflow-hidden rounded-[1.35rem] ring-1 ring-gold/25 shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)] lg:block">
+              <FooterMap title={t("locationTitle")} compact />
+            </div>
           </div>
 
           <nav aria-label={t("footerNav")} className="lg:col-span-2">
@@ -129,7 +138,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 flex flex-col gap-8 border-t border-white/[0.07] pt-12 sm:flex-row sm:items-center sm:justify-between">
+        <div className="order-3 mt-16 flex flex-col gap-8 border-t border-white/[0.07] pt-12 sm:flex-row sm:items-center sm:justify-between lg:mt-20">
           <div className="flex items-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/60" />
             <p className="text-[11px] tracking-[0.32em] text-gold/85 uppercase">
@@ -189,6 +198,26 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterMap({ title, compact = false }: { title: string; compact?: boolean }) {
+  return (
+    <div
+      className={
+        compact
+          ? "relative aspect-[4/3] min-h-[12rem]"
+          : "relative aspect-[16/10] min-h-[14rem] sm:aspect-[21/9]"
+      }
+    >
+      <iframe
+        title={title}
+        src={site.mapsEmbed}
+        className="absolute inset-0 h-full w-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
   );
 }
 

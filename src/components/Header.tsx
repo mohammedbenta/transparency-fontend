@@ -7,6 +7,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useLang } from "@/lib/i18n";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import { bookingHref, handleBookingClick } from "@/lib/booking";
 import { whatsappHref } from "@/lib/site";
 
 export function Header() {
@@ -35,13 +36,13 @@ export function Header() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
         onLight
-          ? "bg-ivory/85 shadow-[0_1px_0_0_rgba(20,19,17,0.06),0_20px_44px_-28px_rgba(20,19,17,0.35)] backdrop-blur-xl"
+          ? "bg-ivory/88 shadow-[0_1px_0_0_rgba(201,165,106,0.28),0_20px_44px_-28px_rgba(16,14,11,0.32)] backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:px-8",
+          "mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] sm:gap-3 sm:px-4 lg:px-8",
           scrolled ? "py-2.5" : "py-5",
         )}
       >
@@ -68,12 +69,13 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-2.5">
           <LanguageSwitcher onLight={onLight} />
           <Link
-            href="/#quick-book"
+            href={bookingHref()}
+            onClick={handleBookingClick}
             className={cn(
               "hidden h-10 items-center rounded-full px-5 text-[12.5px] font-medium tracking-[0.05em] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] lg:inline-flex",
               onLight
-                ? "bg-forest text-ivory hover:bg-forest-deep hover:-translate-y-[1px] shadow-[0_10px_24px_-16px_rgba(28,59,52,0.6)] hover:shadow-[0_18px_32px_-16px_rgba(28,59,52,0.75)]"
-                : "border border-ivory/25 bg-ivory/10 text-ivory backdrop-blur hover:border-gold hover:bg-gold hover:text-ink",
+                ? "btn-gold-metal hover:-translate-y-[1px] shadow-[0_10px_24px_-16px_rgba(201,165,106,0.7)] hover:shadow-[0_18px_32px_-16px_rgba(201,165,106,0.85)]"
+                : "border border-gold/70 bg-gold/15 text-ivory backdrop-blur hover:border-gold hover:bg-gold hover:text-ink",
             )}
           >
             {t("book")}
@@ -128,9 +130,12 @@ export function Header() {
           </nav>
           <div className="mt-10 flex flex-col gap-3">
             <Link
-              href="/#quick-book"
-              onClick={() => setOpen(false)}
-              className="rounded-full bg-forest py-4 text-center text-[13px] font-medium tracking-[0.05em] text-ivory shadow-[0_18px_38px_-20px_rgba(28,59,52,0.75)] transition hover:bg-forest-deep"
+              href={bookingHref()}
+              onClick={(e) => {
+                handleBookingClick(e);
+                setOpen(false);
+              }}
+              className="rounded-full bg-gradient-to-br from-gold-soft via-gold to-gold-deep py-4 text-center text-[13px] font-medium tracking-[0.05em] text-ink shadow-[0_18px_38px_-20px_rgba(201,165,106,0.75)] transition hover:from-gold hover:to-gold-deep hover:text-ivory"
             >
               {t("book")}
             </Link>

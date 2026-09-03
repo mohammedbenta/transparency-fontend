@@ -4,26 +4,39 @@ import { useId, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { useLang } from "@/lib/i18n";
 import { faqs } from "@/lib/content";
-import { cn } from "@/lib/cn";
+import { cn, displayHeading } from "@/lib/cn";
 
-export function FAQ() {
-  const { t, tx } = useLang();
+export function FAQ({ hideIntro = false }: { hideIntro?: boolean }) {
+  const { t, tx, lang } = useLang();
   const [open, setOpen] = useState(0);
   const base = useId();
 
   return (
-    <section id="faq" className="bg-ivory px-5 py-24 lg:px-8 lg:py-32">
+    <section
+      id="faq"
+      className={cn(
+        "bg-ivory px-5 lg:px-8",
+        hideIntro ? "pb-24 pt-8 lg:pb-32" : "py-24 lg:py-32",
+      )}
+    >
       <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-12">
-        <Reveal className="lg:col-span-5">
-          <p className="text-[11px] tracking-[0.28em] text-gold-deep uppercase">
-            {t("faqEyebrow")}
-          </p>
-          <h2 className="mt-5 text-3xl font-light leading-snug sm:text-5xl">
-            {t("faqTitle")}
-          </h2>
-          <p className="mt-5 text-muted">{t("faqLead")}</p>
-        </Reveal>
-        <div className="lg:col-span-7">
+        {!hideIntro ? (
+          <Reveal className="lg:col-span-5">
+            <p className="eyebrow-rule text-[11px] tracking-[0.32em] text-gold-deep uppercase">
+              {t("faqEyebrow")}
+            </p>
+            <h2
+              className={cn(
+                "mt-7 text-3xl leading-[1.15] sm:text-5xl",
+                displayHeading(lang),
+              )}
+            >
+              {t("faqTitle")}
+            </h2>
+            <p className="mt-5 font-light leading-8 text-muted">{t("faqLead")}</p>
+          </Reveal>
+        ) : null}
+        <div className={hideIntro ? "mx-auto w-full max-w-3xl lg:col-span-12" : "lg:col-span-7"}>
           {faqs.map((item, i) => {
             const panel = `${base}-p-${i}`;
             const btn = `${base}-b-${i}`;

@@ -29,7 +29,7 @@ const serif = Cormorant_Garamond({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#1c3b34",
+  themeColor: "#122c26",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
