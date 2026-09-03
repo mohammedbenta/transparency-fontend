@@ -84,7 +84,11 @@ export function BeforeAfter() {
                 before={item.before}
                 after={item.after}
                 alt={tx(item.title)}
-                beforeLift={"beforeLift" in item ? item.beforeLift : undefined}
+                beforeLift={
+                  "beforeLift" in item && typeof item.beforeLift === "number"
+                    ? item.beforeLift
+                    : undefined
+                }
               />
             </article>
           ))}
