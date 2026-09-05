@@ -62,10 +62,10 @@ export function Testimonials() {
   }
 
   return (
-    <section id="testimonials" className="bg-cream px-5 py-28 lg:px-8 lg:py-36">
+    <section id="testimonials" className="overflow-x-clip bg-cream px-5 py-28 lg:px-8 lg:py-36">
       <div className="mx-auto max-w-7xl">
-        <div className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-          <figure className="relative aspect-[3/4] min-h-[22rem] rounded-t-[10rem] rounded-b-[1.75rem] bg-ink ring-1 ring-gold/25 max-lg:overflow-visible lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto lg:overflow-hidden">
+        <div className="grid min-w-0 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
+          <figure className="relative aspect-[3/4] w-full min-w-0 overflow-hidden bg-ink ring-1 ring-gold/25 [border-radius:999px_999px_1.75rem_1.75rem] lg:col-span-5 lg:aspect-auto lg:h-full lg:min-h-[28rem] lg:[border-radius:1.35rem]">
             <Image
               key={reviewsPhotos[photoIndex].src}
               src={reviewsPhotos[photoIndex].src}
@@ -73,12 +73,12 @@ export function Testimonials() {
               fill
               unoptimized
               sizes="(max-width: 1024px) 100vw, 42vw"
-              className="rounded-t-[10rem] rounded-b-[1.75rem] object-cover object-[40%_50%]"
+              className="object-cover object-[40%_50%] [border-radius:999px_999px_1.75rem_1.75rem] lg:[border-radius:1.35rem]"
               priority
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-t-[10rem] rounded-b-[1.75rem] bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent [border-radius:999px_999px_1.75rem_1.75rem] lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20 lg:[border-radius:1.35rem]"
             />
             <figcaption className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
               <QuoteMark />
@@ -100,16 +100,26 @@ export function Testimonials() {
           </figure>
 
           <Reveal className="flex min-w-0 flex-col lg:col-span-7">
-            <div
-              ref={scrollerRef}
-              className="reviews-scroll flex min-w-0 snap-x snap-mandatory overflow-x-auto lg:grid lg:grid-flow-col lg:grid-rows-2 lg:auto-cols-[100%] lg:gap-0"
-            >
-              {testimonials.map((item, i) => (
-                <article
-                  key={item.id}
-                  className="w-full min-w-0 shrink-0 basis-full snap-start lg:min-h-0 lg:w-auto lg:shrink lg:basis-auto"
-                >
-                  <blockquote className="flex h-full flex-col py-8 sm:py-12 lg:py-7">
+            <div className="flex min-w-0 items-center gap-1">
+              <button
+                type="button"
+                onClick={() => goTo(active - pageSize)}
+                disabled={active < pageSize}
+                aria-label={t("reviewPrev")}
+                className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30 lg:grid"
+              >
+                ‹
+              </button>
+              <div
+                ref={scrollerRef}
+                className="reviews-scroll flex min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto lg:grid lg:grid-flow-col lg:grid-rows-2 lg:auto-cols-[100%] lg:gap-5"
+              >
+                {testimonials.map((item) => (
+                  <article
+                    key={item.id}
+                    className="w-full min-w-0 shrink-0 basis-full snap-start lg:min-h-0 lg:w-auto lg:shrink lg:basis-auto"
+                  >
+                    <blockquote className="flex h-full flex-col rounded-[1.35rem] bg-ivory p-6 ring-1 ring-gold/25 shadow-[0_10px_28px_-12px_rgba(20,19,17,0.12)] sm:p-8 lg:p-7">
                       <header className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <Image
@@ -145,14 +155,18 @@ export function Testimonials() {
                         “{tx(item.quote)}”
                       </p>
                     </blockquote>
-                    {i % 2 === 0 ? (
-                      <span
-                        className="mx-1.5 hidden h-px w-12 bg-gradient-to-l from-gold to-transparent lg:block"
-                        aria-hidden
-                      />
-                    ) : null}
                   </article>
                 ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => goTo(active + pageSize)}
+                disabled={active >= testimonials.length - pageSize}
+                aria-label={t("reviewNext")}
+                className="hidden h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30 lg:grid"
+              >
+                ›
+              </button>
             </div>
 
             <div className="mt-8 flex items-center justify-center gap-4">
@@ -161,7 +175,7 @@ export function Testimonials() {
                 onClick={() => goTo(active - pageSize)}
                 disabled={active < pageSize}
                 aria-label={t("reviewPrev")}
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30 lg:hidden"
               >
                 ‹
               </button>
@@ -185,7 +199,7 @@ export function Testimonials() {
                 onClick={() => goTo(active + pageSize)}
                 disabled={active >= testimonials.length - pageSize}
                 aria-label={t("reviewNext")}
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30 lg:hidden"
               >
                 ›
               </button>
