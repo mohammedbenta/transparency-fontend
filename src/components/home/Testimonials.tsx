@@ -65,22 +65,21 @@ export function Testimonials() {
     <section id="testimonials" className="bg-cream px-5 py-28 lg:px-8 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <div className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-          <figure className="relative aspect-[3/4] overflow-hidden [border-radius:999px_999px_1.75rem_1.75rem] bg-ink ring-1 ring-gold/25 lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto">
-            {reviewsPhotos.map((photo, i) => (
-              <Image
-                key={photo.src}
-                src={photo.src}
-                alt={tx(photo.alt)}
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className={cn(
-                  "object-cover object-[40%_50%] transition-opacity duration-1000",
-                  i === photoIndex ? "opacity-100" : "opacity-0",
-                )}
-                priority={i === 0}
-              />
-            ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/25 to-transparent lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20" />
+          <figure className="relative aspect-[3/4] min-h-[22rem] rounded-t-[10rem] rounded-b-[1.75rem] bg-ink ring-1 ring-gold/25 max-lg:overflow-visible lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto lg:overflow-hidden">
+            <Image
+              key={reviewsPhotos[photoIndex].src}
+              src={reviewsPhotos[photoIndex].src}
+              alt={tx(reviewsPhotos[photoIndex].alt)}
+              fill
+              unoptimized
+              sizes="(max-width: 1024px) 100vw, 42vw"
+              className="rounded-t-[10rem] rounded-b-[1.75rem] object-cover object-[40%_50%]"
+              priority
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-t-[10rem] rounded-b-[1.75rem] bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20"
+            />
             <figcaption className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
               <QuoteMark />
               <div className="mt-5 flex items-center gap-4">
@@ -101,26 +100,16 @@ export function Testimonials() {
           </figure>
 
           <Reveal className="flex min-w-0 flex-col lg:col-span-7">
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                onClick={() => goTo(active - pageSize)}
-                disabled={active < pageSize}
-                aria-label={t("reviewPrev")}
-                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
-              >
-                ‹
-              </button>
-              <div
-                ref={scrollerRef}
-                className="reviews-scroll flex min-w-0 flex-1 snap-x snap-mandatory overflow-x-auto lg:grid lg:grid-flow-col lg:grid-rows-2 lg:auto-cols-[100%] lg:gap-0"
-              >
-                {testimonials.map((item, i) => (
-                  <article
-                    key={item.id}
-                    className="w-full min-w-0 shrink-0 basis-full snap-start lg:min-h-0 lg:w-auto lg:shrink lg:basis-auto"
-                  >
-                    <blockquote className="flex h-full flex-col px-1.5 py-8 sm:py-12 lg:py-7">
+            <div
+              ref={scrollerRef}
+              className="reviews-scroll flex min-w-0 snap-x snap-mandatory overflow-x-auto lg:grid lg:grid-flow-col lg:grid-rows-2 lg:auto-cols-[100%] lg:gap-0"
+            >
+              {testimonials.map((item, i) => (
+                <article
+                  key={item.id}
+                  className="w-full min-w-0 shrink-0 basis-full snap-start lg:min-h-0 lg:w-auto lg:shrink lg:basis-auto"
+                >
+                  <blockquote className="flex h-full flex-col py-8 sm:py-12 lg:py-7">
                       <header className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-4">
                           <Image
@@ -164,6 +153,32 @@ export function Testimonials() {
                     ) : null}
                   </article>
                 ))}
+            </div>
+
+            <div className="mt-8 flex items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => goTo(active - pageSize)}
+                disabled={active < pageSize}
+                aria-label={t("reviewPrev")}
+                className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold bg-ivory text-xl text-ink shadow-[0_8px_24px_-12px_rgba(20,19,17,0.45)] transition hover:bg-gold hover:text-ivory disabled:opacity-30"
+              >
+                ‹
+              </button>
+              <div className="flex items-center justify-center gap-2">
+                {testimonials.map((item, i) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    aria-label={tx(item.name)}
+                    aria-current={i === active}
+                    onClick={() => goTo(i)}
+                    className={cn(
+                      "h-1.5 rounded-full transition-all",
+                      i === active ? "w-7 bg-gold" : "w-2.5 bg-sand hover:bg-gold/70",
+                    )}
+                  />
+                ))}
               </div>
               <button
                 type="button"
@@ -174,22 +189,6 @@ export function Testimonials() {
               >
                 ›
               </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center gap-2">
-              {testimonials.map((item, i) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  aria-label={tx(item.name)}
-                  aria-current={i === active}
-                  onClick={() => goTo(i)}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all",
-                    i === active ? "w-7 bg-gold" : "w-2.5 bg-sand hover:bg-gold/70",
-                  )}
-                />
-              ))}
             </div>
           </Reveal>
         </div>
