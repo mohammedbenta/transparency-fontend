@@ -88,7 +88,7 @@ export function ServiceDetail({ service }: { service: Service }) {
           </div>
 
           <aside className="h-fit rounded-[1.35rem] border border-gold/30 bg-surface p-8 lg:col-span-4 lg:sticky lg:top-24">
-            <p className="text-[11px] tracking-[0.22em] text-gold-deep uppercase">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.22em] text-gold-deep uppercase">
               {t("book")}
             </p>
             {service.fromUsd ? (

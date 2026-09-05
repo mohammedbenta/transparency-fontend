@@ -53,7 +53,7 @@ export function BeforeAfter() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
-            <p className="text-[11px] tracking-[0.32em] text-gold-deep uppercase">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold-deep uppercase">
               {t("baEyebrow")}
             </p>
             <span aria-hidden className="h-px w-10 bg-gold/70" />
@@ -228,10 +228,10 @@ function Compare({
         </span>
       </div>
 
-      <span className="pointer-events-none absolute start-4 top-4 rounded-full border border-ivory/20 bg-charcoal/60 px-3.5 py-1 text-[10px] tracking-[0.28em] text-ivory/85 uppercase backdrop-blur">
+      <span className="pointer-events-none absolute start-4 top-4 rounded-full border border-ivory/20 bg-charcoal/60 px-3.5 py-1 text-[10px] tracking-normal text-ivory/85 uppercase backdrop-blur sm:tracking-[0.28em]">
         {t("baBefore")}
       </span>
-      <span className="pointer-events-none absolute end-4 top-4 rounded-full bg-gold px-3.5 py-1 text-[10px] tracking-[0.28em] text-ink uppercase">
+      <span className="pointer-events-none absolute end-4 top-4 rounded-full bg-gold px-3.5 py-1 text-[10px] tracking-normal text-ink uppercase sm:tracking-[0.28em]">
         {t("baAfter")}
       </span>
       <span id={labelId} className="sr-only">

@@ -30,6 +30,7 @@ export function Logo({
           fill
           sizes="(max-width: 640px) 172px, 240px"
           priority={priority}
+          unoptimized
           className="object-contain object-left"
         />
       </span>

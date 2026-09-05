@@ -182,7 +182,7 @@ function BookingDialog({
       >
         <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-5">
           <div>
-            <p className="text-[11px] tracking-[0.22em] text-gold-deep uppercase">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.22em] text-gold-deep uppercase">
               Transparency
             </p>
             <h2 id={titleId} className="mt-1 text-xl text-ink">

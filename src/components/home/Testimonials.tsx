@@ -64,8 +64,8 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="bg-cream px-5 py-28 lg:px-8 lg:py-36">
       <div className="mx-auto max-w-7xl">
-        <Reveal className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-          <figure className="relative aspect-[3/4] overflow-hidden [border-radius:999px_999px_1.75rem_1.75rem] ring-1 ring-gold/25 lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto">
+        <div className="grid items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
+          <figure className="relative aspect-[3/4] overflow-hidden [border-radius:999px_999px_1.75rem_1.75rem] bg-ink ring-1 ring-gold/25 lg:col-span-5 lg:h-full lg:min-h-[28rem] lg:aspect-auto">
             {reviewsPhotos.map((photo, i) => (
               <Image
                 key={photo.src}
@@ -80,12 +80,12 @@ export function Testimonials() {
                 priority={i === 0}
               />
             ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/90 via-charcoal/45 to-charcoal/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/25 to-transparent lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20" />
             <figcaption className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
               <QuoteMark />
               <div className="mt-5 flex items-center gap-4">
                 <span aria-hidden className="h-px w-10 bg-gold/70" />
-                <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
+                <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
                   {t("reviewsEyebrow")}
                 </p>
               </div>
@@ -100,7 +100,7 @@ export function Testimonials() {
             </figcaption>
           </figure>
 
-          <div className="flex min-w-0 flex-col lg:col-span-7">
+          <Reveal className="flex min-w-0 flex-col lg:col-span-7">
             <div className="flex items-center gap-1">
               <button
                 type="button"
@@ -191,8 +191,8 @@ export function Testimonials() {
                 />
               ))}
             </div>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -391,7 +391,7 @@ function QuickBookForm() {
         </div>
       ) : (
         <>
-          <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
+          <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
             {t("nav.booking")}
           </p>
           <h2

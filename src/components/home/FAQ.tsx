@@ -22,7 +22,7 @@ export function FAQ({ hideIntro = false }: { hideIntro?: boolean }) {
       <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-12">
         {!hideIntro ? (
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow-rule text-[11px] tracking-[0.32em] text-gold-deep uppercase">
+            <p className="eyebrow-rule text-[11px] tracking-normal sm:tracking-[0.32em] text-gold-deep uppercase">
               {t("faqEyebrow")}
             </p>
             <h2

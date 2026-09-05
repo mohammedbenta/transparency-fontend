@@ -21,12 +21,28 @@ export function Hero() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const wide = window.matchMedia("(min-width: 768px)");
 
+    const attach = (el: HTMLVideoElement, src: string) => {
+      if (el.getAttribute("src") === src) return;
+      el.src = src;
+    };
+
+    const detach = (el: HTMLVideoElement) => {
+      if (!el.getAttribute("src")) return;
+      el.removeAttribute("src");
+      el.load();
+    };
+
     const sync = (inView: boolean) => {
       const primary = wide.matches ? desktop : mobile;
       const other = wide.matches ? mobile : desktop;
-      other.pause();
-      other.preload = "none";
+      const primarySrc = wide.matches
+        ? "/videos/hero-desktop.mp4"
+        : "/videos/hero-mobile.mp4";
+
+      detach(other);
+      attach(primary, primarySrc);
       primary.preload = "auto";
+
       if (!inView || reduce.matches) {
         primary.pause();
         return;
@@ -58,21 +74,36 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative min-h-[100svh] overflow-hidden bg-charcoal text-ivory">
+      <Image
+        src="/images/clinic/hero-mobile.jpg"
+        alt=""
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="object-cover object-center opacity-70 md:hidden"
+      />
+      <Image
+        src="/images/clinic/hero-desktop.jpg"
+        alt=""
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="hidden object-cover object-center opacity-70 md:block"
+      />
       <video
         ref={mobileRef}
-        src="/videos/hero-mobile.mp4"
         poster="/images/clinic/hero-mobile.jpg"
-        autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
         aria-hidden
         className="absolute inset-0 h-full w-full object-cover object-center opacity-70 motion-reduce:hidden md:hidden"
       />
       <video
         ref={desktopRef}
-        src="/videos/hero-desktop.mp4"
         poster="/images/clinic/hero-desktop.jpg"
         muted
         loop
@@ -81,21 +112,6 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 hidden h-full w-full object-cover object-center opacity-70 motion-reduce:hidden md:block"
       />
-      <Image
-        src="/images/clinic/hero-mobile.jpg"
-        alt={t("heroTrust")}
-        fill
-        priority
-        sizes="100vw"
-        className="hidden object-cover object-center opacity-70 motion-reduce:block md:hidden"
-      />
-      <Image
-        src="/images/clinic/hero-desktop.jpg"
-        alt={t("heroTrust")}
-        fill
-        sizes="100vw"
-        className="hidden object-cover object-center opacity-70 md:motion-reduce:block"
-      />
       <div className="absolute inset-0 bg-gradient-to-l from-charcoal/92 via-charcoal/58 to-charcoal/25 rtl:bg-gradient-to-r" />
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/12 to-charcoal/50" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_60%_at_50%_100%,rgba(12,11,9,0.62),transparent_60%)]" />
@@ -103,7 +119,7 @@ export function Hero() {
       <div className="relative mx-auto flex min-h-[100svh] w-full min-w-0 max-w-7xl flex-col justify-end px-5 pt-24 pb-[max(5rem,calc(env(safe-area-inset-bottom)+3.25rem))] lg:px-8 lg:pt-28 lg:pb-24">
         <div className="flex items-center gap-4">
           <span aria-hidden className="h-px w-10 bg-gold/70" />
-          <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
+          <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
             {t("heroEyebrow")}
           </p>
         </div>
@@ -128,25 +144,25 @@ export function Hero() {
             arrow={false}
             className="w-full sm:w-auto"
           >
-            {t("whatsapp")}
+            {t("contact")}
           </Button>
         </div>
         <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-normal sm:tracking-[0.16em] text-ivory/70 uppercase">
             <StarMark />
             <span dir="ltr">{site.reviews.rating} Google</span>
           </li>
-          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-normal sm:tracking-[0.16em] text-ivory/70 uppercase">
             <ShieldMark />
             <span>{t("heroIconPrivacy")}</span>
           </li>
-          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] text-ivory/70 uppercase">
+          <li className="inline-flex items-center gap-2.5 text-[11px] tracking-normal sm:tracking-[0.16em] text-ivory/70 uppercase">
             <ClockMark />
             <span>{lang === "ar" ? site.hours.timeAr : site.hours.timeEn}</span>
           </li>
         </ul>
         <div className="mt-14 flex items-center justify-between gap-6 border-t border-gold/20 pt-6">
-          <div className="flex items-center gap-3 text-[11px] tracking-[0.32em] text-ivory/60 uppercase">
+          <div className="flex items-center gap-3 text-[11px] tracking-normal sm:tracking-[0.32em] text-ivory/60 uppercase">
             <MapMark />
             <span>{t("heroTrust")}</span>
           </div>

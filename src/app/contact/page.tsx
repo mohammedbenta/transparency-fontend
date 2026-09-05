@@ -32,7 +32,7 @@ export default function ContactPage() {
             />
             <ContactRow label="Email" href={mailHref} value={site.email} ltr />
             <div>
-              <p className="text-[11px] tracking-[0.2em] text-gold-deep uppercase">
+              <p className="text-[11px] tracking-normal sm:tracking-[0.2em] text-gold-deep uppercase">
                 {t("locationTitle")}
               </p>
               <p className="mt-2 leading-8">
@@ -40,7 +40,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div>
-              <p className="text-[11px] tracking-[0.2em] text-gold-deep uppercase">
+              <p className="text-[11px] tracking-normal sm:tracking-[0.2em] text-gold-deep uppercase">
                 {t("footerHours")}
               </p>
               <p className="mt-2 text-lg font-light leading-8">
@@ -133,7 +133,7 @@ function ContactRow({
 }) {
   return (
     <div>
-      <p className="text-[11px] tracking-[0.2em] text-gold-deep uppercase">{label}</p>
+      <p className="text-[11px] tracking-normal sm:tracking-[0.2em] text-gold-deep uppercase">{label}</p>
       <a
         href={href}
         className="mt-2 inline-block text-lg hover:text-forest"

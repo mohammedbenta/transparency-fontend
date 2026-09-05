@@ -126,7 +126,7 @@ export function ClinicSpace() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
-            <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
               {t("experienceEyebrow")}
             </p>
             <span aria-hidden className="h-px w-10 bg-gold/70" />

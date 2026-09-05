@@ -48,7 +48,7 @@ export const messages = {
       "خطة تُبنى بعد أن نُصغي — لا قبل. نشرح الخيارات، ثم نمضي بخطى واثقة.",
     allServices: "كل الخدمات",
     doctorsEyebrow: "فريقنا",
-    doctorsTitle: "الثقة تبدأ من معرفة من يعتني بك.",
+    doctorsTitle: "تعرّف على من يعتني بك.",
     doctorsLead:
       "استشاريون بخبرة طويلة، يقودهم د. أحمد نواوي — عناية بأيدٍ نعرفها بالاسم.",
     doctorsNote:
@@ -65,7 +65,7 @@ export const messages = {
     whyChoose: "لماذا الشفافية",
     experienceEyebrow: "المكان",
     experienceTitle: "هدوء يسبق العناية.",
-    experienceLead: "صالة، ضوء، وغرفة علاج صُممت لتُخفف — لا لتُزاحم.",
+    experienceLead: "المكان يُهدّئ النفس ثم تبدأ العناية.",
     photoReplace: "للعيادة: استبدل بصورة المكان",
     baEyebrow: "من أرشيف العيادة",
     baTitle: "نتائج تتحدّث بصوتٍ خافض.",
@@ -200,7 +200,7 @@ export const messages = {
       "A plan built after we listen — never before. We explain the options, then move with quiet certainty.",
     allServices: "All services",
     doctorsEyebrow: "The team",
-    doctorsTitle: "Trust begins with knowing who cares for you.",
+    doctorsTitle: "Get to know who cares for you.",
     doctorsLead:
       "Consultants with long-standing practice, led by Dr. Ahmad Nawawi — care in hands you can name.",
     doctorsNote:
@@ -217,7 +217,7 @@ export const messages = {
     whyChoose: "Why Transparency",
     experienceEyebrow: "The space",
     experienceTitle: "Quiet, before the care.",
-    experienceLead: "A lounge, daylight, and a treatment room designed to settle you — not crowd you.",
+    experienceLead: "The space settles the mind, then care begins.",
     photoReplace: "For the clinic: replace with a facility photograph",
     baEyebrow: "From the archive",
     baTitle: "Results, spoken quietly.",

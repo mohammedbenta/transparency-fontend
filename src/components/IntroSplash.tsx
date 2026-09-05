@@ -50,6 +50,7 @@ export function IntroSplash() {
             height={170}
             priority
             className="intro-logo"
+            unoptimized
           />
         </div>
         <span className="intro-rule" />

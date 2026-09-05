@@ -16,7 +16,7 @@ function FooterContactLinks({
 }) {
   return (
     <div className={className}>
-      <p className="text-[11px] tracking-[0.28em] text-gold uppercase">
+      <p className="text-[11px] tracking-normal sm:tracking-[0.28em] text-gold uppercase">
         {label}
       </p>
       <ul className="mt-6 space-y-4">
@@ -56,7 +56,7 @@ function FooterPartners({
 }) {
   return (
     <div className={className}>
-      <p className="text-[11px] tracking-[0.28em] text-gold uppercase">
+      <p className="text-[11px] tracking-normal sm:tracking-[0.28em] text-gold uppercase">
         {label}
       </p>
       <div className="mt-6 flex flex-col items-start gap-6">
@@ -237,7 +237,7 @@ export function Footer() {
               label={t("contact")}
               className="hidden lg:block"
             />
-            <p className="text-[11px] tracking-[0.28em] text-gold uppercase lg:mt-10">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.28em] text-gold uppercase lg:mt-10">
               {t("footerVisit")}
             </p>
             <a
@@ -249,7 +249,7 @@ export function Footer() {
               {address}
             </a>
             <div className="hidden lg:block">
-              <p className="mt-8 text-[11px] tracking-[0.28em] text-gold uppercase">
+              <p className="mt-8 text-[11px] tracking-normal sm:tracking-[0.28em] text-gold uppercase">
                 {t("footerHours")}
               </p>
               <p className="mt-3 text-sm font-light text-ivory/85">{days}</p>

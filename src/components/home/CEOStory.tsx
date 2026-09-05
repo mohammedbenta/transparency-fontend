@@ -16,28 +16,28 @@ export function CEOStory() {
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-line to-transparent"
       />
       <div className="mx-auto grid max-w-7xl items-stretch gap-14 lg:grid-cols-12 lg:gap-24">
-        <Reveal
-          className="relative aspect-[4/5] overflow-hidden rounded-[1.35rem] bg-ink shadow-[0_10px_28px_-6px_rgba(20,19,17,0.16)] sm:aspect-[3/4] lg:col-span-5 lg:aspect-auto lg:min-h-[42rem]"
-        >
-          <Image
+        <Reveal className="lg:col-span-5 lg:h-full">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[1.35rem] bg-ink shadow-[0_10px_28px_-6px_rgba(20,19,17,0.16)] sm:aspect-[3/4] lg:h-full lg:aspect-auto lg:min-h-[42rem]">
+            <Image
             src="/images/doctors/ahmed-nawawi-ceo.jpg"
             alt={t("ceoName")}
             fill
             sizes="(max-width: 1024px) 100vw, 42vw"
-            className="object-cover object-[50%_20%] transition-transform duration-[1800ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.03]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/95 via-charcoal/30 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-8 text-ivory sm:p-10">
-            <span
-              aria-hidden
-              className="mb-5 block h-px w-10 bg-gradient-to-l from-gold to-transparent"
+              className="object-cover object-[50%_12%]"
             />
-            <p className="text-xl font-light leading-snug tracking-[-0.01em] sm:text-[1.6rem]">
-              {t("ceoName")}
-            </p>
-            <p className="mt-2 text-[11px] tracking-[0.28em] text-gold uppercase">
-              {t("ceoRole")}
-            </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent sm:from-charcoal/95 sm:via-charcoal/30" />
+            <div className="absolute inset-x-0 bottom-0 p-8 text-ivory sm:p-10">
+              <span
+                aria-hidden
+                className="mb-5 block h-px w-10 bg-gradient-to-l from-gold to-transparent"
+              />
+              <p className="text-xl font-light leading-snug tracking-[-0.01em] sm:text-[1.6rem]">
+                {t("ceoName")}
+              </p>
+              <p className="mt-2 text-[11px] tracking-normal text-gold uppercase sm:tracking-[0.28em]">
+                {t("ceoRole")}
+              </p>
+            </div>
           </div>
         </Reveal>
 
@@ -45,7 +45,7 @@ export function CEOStory() {
           <div className="flex w-full max-w-xl flex-col">
           <div className="flex items-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
-            <p className="text-[11px] tracking-[0.32em] text-gold-deep uppercase">
+            <p className="text-[11px] tracking-normal text-gold-deep uppercase sm:tracking-[0.32em]">
               {t("ceoEyebrow")}
             </p>
           </div>
@@ -74,7 +74,7 @@ export function CEOStory() {
               {t("ceoSign")}
             </span>
             <span aria-hidden className="h-px flex-1 max-w-16 bg-gold/40" />
-            <span className="text-[11px] tracking-[0.28em] text-muted uppercase">
+            <span className="text-[11px] tracking-normal text-muted uppercase sm:tracking-[0.28em]">
               {t("ceoRole")}
             </span>
           </div>

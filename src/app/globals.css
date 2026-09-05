@@ -68,19 +68,11 @@ body::before {
 
 .reveal {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
-  transition:
-    opacity 1.2s var(--ease-lux),
-    transform 1.2s var(--ease-lux),
-    filter 1.2s var(--ease-lux);
-  filter: blur(4px);
-  will-change: opacity, transform;
+  transition: opacity 1.2s var(--ease-lux);
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: none;
-  filter: blur(0);
 }
 
 .reveal-left {
@@ -245,6 +237,18 @@ html.intro-done .intro-splash {
   .intro-logo,
   .intro-rule {
     animation: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .tracking-\[0\.32em\],
+  .tracking-\[0\.28em\],
+  .tracking-\[0\.24em\],
+  .tracking-\[0\.22em\],
+  .tracking-\[0\.2em\],
+  .tracking-\[0\.18em\],
+  .tracking-\[0\.16em\] {
+    letter-spacing: 0 !important;
   }
 }
 

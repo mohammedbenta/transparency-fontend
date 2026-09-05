@@ -10,16 +10,21 @@ import { teamMembers } from "@/lib/content";
 
 export function DoctorsSection({ className }: { className?: string }) {
   const { t, tx, lang } = useLang();
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const indexRef = useRef(0);
   const [active, setActive] = useState(0);
 
   const goTo = useCallback((index: number) => {
     const root = scrollerRef.current;
     if (!root) return;
     const next = (index + teamMembers.length) % teamMembers.length;
+    indexRef.current = next;
+    setActive(next);
     const child = root.children[next] as HTMLElement | undefined;
     if (!child) return;
     const delta = child.getBoundingClientRect().left - root.getBoundingClientRect().left;
+    if (Math.abs(delta) < 2) return;
     root.scrollBy({ left: delta, behavior: "smooth" });
   }, []);
 
@@ -34,7 +39,10 @@ export function DoctorsSection({ className }: { className?: string }) {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
         const i = slides.indexOf(visible.target);
-        if (i >= 0) setActive(i);
+        if (i >= 0) {
+          indexRef.current = i;
+          setActive(i);
+        }
       },
       { root, threshold: 0.55 },
     );
@@ -42,13 +50,62 @@ export function DoctorsSection({ className }: { className?: string }) {
     return () => io.disconnect();
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    const root = scrollerRef.current;
+    if (!section || !root) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    let inView = false;
+    let paused = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(section);
+
+    const pause = () => {
+      paused = true;
+    };
+    const resume = () => {
+      paused = false;
+    };
+
+    root.addEventListener("pointerdown", pause);
+    root.addEventListener("pointerup", resume);
+    root.addEventListener("pointercancel", resume);
+    root.addEventListener("touchend", resume);
+
+    const id = window.setInterval(() => {
+      if (!inView || paused || desktop.matches) return;
+      goTo(indexRef.current + 1);
+    }, 3500);
+
+    return () => {
+      observer.disconnect();
+      window.clearInterval(id);
+      root.removeEventListener("pointerdown", pause);
+      root.removeEventListener("pointerup", resume);
+      root.removeEventListener("pointercancel", resume);
+      root.removeEventListener("touchend", resume);
+    };
+  }, [goTo]);
+
   return (
-    <section id="doctors" className={cn("bg-charcoal py-28 text-ivory lg:py-36", className)}>
+    <section
+      ref={sectionRef}
+      id="doctors"
+      className={cn("bg-charcoal py-28 text-ivory lg:py-36", className)}
+    >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-4">
             <span aria-hidden className="h-px w-10 bg-gold/70" />
-            <p className="text-[11px] tracking-[0.32em] text-gold uppercase">
+            <p className="text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
               {t("doctorsEyebrow")}
             </p>
             <span aria-hidden className="h-px w-10 bg-gold/70" />
@@ -87,7 +144,7 @@ export function DoctorsSection({ className }: { className?: string }) {
                   <h3 className="text-xl font-light leading-snug tracking-[-0.01em] sm:text-[1.5rem]">
                     {tx(doctor.name)}
                   </h3>
-                  <p className="mt-2 text-[11px] tracking-[0.24em] text-gold uppercase">
+                  <p className="mt-2 text-[11px] tracking-normal sm:tracking-[0.24em] text-gold uppercase">
                     {tx(doctor.role)}
                   </p>
                 </div>

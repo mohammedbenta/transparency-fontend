@@ -18,7 +18,7 @@ export function PageHero({
     <header className="relative overflow-hidden bg-charcoal px-5 pb-20 pt-36 text-ivory lg:px-8 lg:pt-44 lg:pb-24">
       <div aria-hidden className="page-hero-glow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto max-w-7xl">
-        <p className="eyebrow-rule text-[11px] tracking-[0.32em] text-gold uppercase">
+        <p className="eyebrow-rule text-[11px] tracking-normal sm:tracking-[0.32em] text-gold uppercase">
           {eyebrow}
         </p>
         <h1

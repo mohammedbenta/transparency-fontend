@@ -9,7 +9,7 @@ const numClass =
   "stat-num font-sans text-[2.75rem] font-light leading-none tabular-nums tracking-[-0.04em] text-gold sm:text-6xl lg:text-[4.35rem]";
 
 const labelClass =
-  "mt-2.5 max-w-[11rem] text-[11px] leading-4 tracking-[0.18em] text-ivory/55 uppercase sm:mt-3.5 sm:max-w-none sm:text-[12px] sm:leading-5 sm:tracking-[0.24em]";
+  "mt-2.5 max-w-[11rem] text-[11px] leading-4 tracking-normal text-ivory/55 uppercase sm:mt-3.5 sm:max-w-none sm:text-[12px] sm:leading-5 sm:tracking-[0.24em]";
 
 export function TrustStrip() {
   const { t } = useLang();

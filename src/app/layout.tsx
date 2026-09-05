@@ -82,6 +82,20 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       dir={lang === "ar" ? "rtl" : "ltr"}
       className={`${arabic.variable} ${serif.variable} ${arabic.className} h-full antialiased`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/clinic/hero-mobile.jpg"
+          media="(max-width: 767px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/clinic/hero-desktop.jpg"
+          media="(min-width: 768px)"
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
         <LanguageProvider initialLang={lang}>
           <BookingProvider>
