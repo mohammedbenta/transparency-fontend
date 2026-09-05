@@ -91,11 +91,6 @@ export function ServiceDetail({ service }: { service: Service }) {
             <p className="text-[11px] tracking-normal sm:tracking-[0.22em] text-gold-deep uppercase">
               {t("book")}
             </p>
-            {service.fromUsd ? (
-              <p className="mt-3 font-serif text-2xl text-gold-deep">
-                {formatFromUsd(lang, service.fromUsd)}
-              </p>
-            ) : null}
             <p className="mt-3 text-lg leading-8">{tx(service.summary)}</p>
             <div className="mt-8 flex flex-col gap-3">
               <BookingCta variant="gold" service={service.slug} />

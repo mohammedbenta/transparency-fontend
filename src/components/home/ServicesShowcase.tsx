@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
-import { cn, displayHeading, formatFromUsd } from "@/lib/cn";
+import { cn, displayHeading } from "@/lib/cn";
 import { useLang } from "@/lib/i18n";
 import { featuredServices } from "@/lib/content";
 
@@ -65,11 +65,6 @@ export function ServicesShowcase({ hideIntro = false }: { hideIntro?: boolean })
                   >
                     {tx(s.name)}
                   </h3>
-                  {s.fromUsd ? (
-                    <p className="mt-2 font-serif text-sm tracking-[0.08em] text-gold-deep">
-                      {formatFromUsd(lang, s.fromUsd)}
-                    </p>
-                  ) : null}
                   <p className="mt-3 max-w-md text-sm leading-7 text-muted">
                     {tx(s.problem)}
                   </p>
