@@ -65,7 +65,7 @@ export function Testimonials() {
     <section id="testimonials" className="overflow-x-clip bg-cream px-5 py-28 lg:px-8 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <div className="grid min-w-0 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-          <figure className="relative aspect-[3/4] w-full min-w-0 overflow-hidden bg-ink ring-1 ring-gold/25 [border-radius:999px_999px_1.75rem_1.75rem] lg:col-span-5 lg:aspect-auto lg:h-full lg:min-h-[28rem] lg:[border-radius:1.35rem]">
+          <figure className="relative aspect-[3/4] w-full min-w-0 overflow-hidden bg-ink ring-1 ring-gold/25 [border-radius:999px_999px_1.75rem_1.75rem] lg:col-span-5 lg:aspect-auto lg:h-full lg:min-h-[28rem]">
             <Image
               key={reviewsPhotos[photoIndex].src}
               src={reviewsPhotos[photoIndex].src}
@@ -73,12 +73,12 @@ export function Testimonials() {
               fill
               unoptimized
               sizes="(max-width: 1024px) 100vw, 42vw"
-              className="object-cover object-[40%_50%] [border-radius:999px_999px_1.75rem_1.75rem] lg:[border-radius:1.35rem]"
+              className="object-cover object-[40%_50%] [border-radius:999px_999px_1.75rem_1.75rem]"
               priority
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent [border-radius:999px_999px_1.75rem_1.75rem] lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20 lg:[border-radius:1.35rem]"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/15 to-transparent [border-radius:999px_999px_1.75rem_1.75rem] lg:from-charcoal/90 lg:via-charcoal/45 lg:to-charcoal/20"
             />
             <figcaption className="absolute inset-x-0 bottom-0 p-8 sm:p-10">
               <QuoteMark />

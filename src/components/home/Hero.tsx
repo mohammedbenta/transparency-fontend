@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { BookingCta } from "@/components/BookingModal";
 import { Button } from "@/components/Button";
@@ -12,6 +12,7 @@ export function Hero() {
   const { t, lang } = useLang();
   const mobileRef = useRef<HTMLVideoElement>(null);
   const desktopRef = useRef<HTMLVideoElement>(null);
+  const [live, setLive] = useState(false);
 
   useEffect(() => {
     const mobile = mobileRef.current;
@@ -20,55 +21,79 @@ export function Hero() {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const wide = window.matchMedia("(min-width: 768px)");
+    let inView = true;
+    let alive = true;
 
-    const attach = (el: HTMLVideoElement, src: string) => {
-      if (el.getAttribute("src") === src) return;
-      el.src = src;
-    };
+    const onScreen = () => (wide.matches ? desktop : mobile);
+    const offScreen = () => (wide.matches ? mobile : desktop);
+    const file = () =>
+      wide.matches ? "/videos/hero-desktop.mp4" : "/videos/hero-mobile.mp4";
 
-    const detach = (el: HTMLVideoElement) => {
+    const unload = (el: HTMLVideoElement) => {
+      el.pause();
       if (!el.getAttribute("src")) return;
       el.removeAttribute("src");
       el.load();
     };
 
-    const sync = (inView: boolean) => {
-      const primary = wide.matches ? desktop : mobile;
-      const other = wide.matches ? mobile : desktop;
-      const primarySrc = wide.matches
-        ? "/videos/hero-desktop.mp4"
-        : "/videos/hero-mobile.mp4";
-
-      detach(other);
-      attach(primary, primarySrc);
-      primary.preload = "auto";
-
-      if (!inView || reduce.matches) {
-        primary.pause();
-        return;
-      }
-      void primary.play().catch(() => undefined);
+    const load = (el: HTMLVideoElement, src: string) => {
+      if (el.getAttribute("src") === src) return;
+      el.src = src;
+      el.preload = "auto";
     };
 
-    let inView = true;
-    const apply = () => sync(inView);
+    const tick = () => {
+      if (!alive) return;
+      const active = onScreen();
+      unload(offScreen());
+      load(active, file());
+
+      if (!inView || reduce.matches) {
+        active.pause();
+        return;
+      }
+      void active.play().catch(() => undefined);
+    };
+
+    const onPlaying = (event: Event) => {
+      if (event.currentTarget === onScreen()) setLive(true);
+    };
+
+    const loopWithoutPoster = (el: HTMLVideoElement) => {
+      const jump = () => {
+        if (el.paused || !el.duration) return;
+        if (el.currentTime >= el.duration - 0.12) el.currentTime = 0.04;
+      };
+      el.addEventListener("timeupdate", jump);
+      return () => el.removeEventListener("timeupdate", jump);
+    };
+
+    mobile.addEventListener("playing", onPlaying);
+    desktop.addEventListener("playing", onPlaying);
+    const clearMobileLoop = loopWithoutPoster(mobile);
+    const clearDesktopLoop = loopWithoutPoster(desktop);
 
     const io = new IntersectionObserver(
       ([entry]) => {
         inView = entry.isIntersecting;
-        apply();
+        tick();
       },
       { threshold: 0.12 },
     );
 
     const section = mobile.closest("section");
     if (section) io.observe(section);
-    wide.addEventListener("change", apply);
-    apply();
+    wide.addEventListener("change", tick);
+    tick();
 
     return () => {
+      alive = false;
       io.disconnect();
-      wide.removeEventListener("change", apply);
+      wide.removeEventListener("change", tick);
+      mobile.removeEventListener("playing", onPlaying);
+      desktop.removeEventListener("playing", onPlaying);
+      clearMobileLoop();
+      clearDesktopLoop();
     };
   }, []);
 
@@ -81,7 +106,7 @@ export function Hero() {
         priority
         unoptimized
         sizes="100vw"
-        className="object-cover object-center opacity-70 md:hidden"
+        className="object-cover object-center md:hidden"
       />
       <Image
         src="/images/clinic/hero-desktop.jpg"
@@ -90,27 +115,29 @@ export function Hero() {
         priority
         unoptimized
         sizes="100vw"
-        className="hidden object-cover object-center opacity-70 md:block"
+        className="hidden object-cover object-center md:block"
       />
       <video
         ref={mobileRef}
-        poster="/images/clinic/hero-mobile.jpg"
         muted
-        loop
         playsInline
         preload="none"
         aria-hidden
-        className="absolute inset-0 h-full w-full object-cover object-center opacity-70 motion-reduce:hidden md:hidden"
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover object-center motion-reduce:hidden md:hidden",
+          live ? "opacity-100" : "opacity-0",
+        )}
       />
       <video
         ref={desktopRef}
-        poster="/images/clinic/hero-desktop.jpg"
         muted
-        loop
         playsInline
         preload="none"
         aria-hidden
-        className="absolute inset-0 hidden h-full w-full object-cover object-center opacity-70 motion-reduce:hidden md:block"
+        className={cn(
+          "absolute inset-0 hidden h-full w-full object-cover object-center motion-reduce:hidden md:block",
+          live ? "opacity-100" : "opacity-0",
+        )}
       />
       <div className="absolute inset-0 bg-gradient-to-l from-charcoal/92 via-charcoal/58 to-charcoal/25 rtl:bg-gradient-to-r" />
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/12 to-charcoal/50" />
